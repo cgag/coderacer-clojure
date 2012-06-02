@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CODE RACER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
+type="text/javascript"></script>
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="logo">
+			<a href="/"><img src="img/code_racer_top.png"></a>
+		  </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+	  <div class="span6" style="float: none; margin: 0 auto;">
+		  <div class="hero-unit main-unit">
+			<div class="select-unit">
+				<div class="option">
+					<center><h2>Language</h2></center>
+					<select>
+						<option value="any">Any</option>
+						<option value="javascript">Javascript</option>
+						<option value="python">Python</option>
+						<option value="ruby">Ruby</option>
+					</select>
+				</div>
+				<div class="option">
+					<center><h2>Problem</h2></center>
+					<select>
+						<option value="any">Any</option>
+						<option value="99beers">99 Beers on the Wall</option>
+						<option value="bubblesort">Bubble Sort</option>
+						<option value="helloworld">Hello World</option>
+					</select>
+				</div>
+				<a class="btn btn-inverse btn-large start-coding">Start coding &raquo;</a>
+			</div>
+			<div style="display: none" class="code-unit">
+				<div class="code-text">
+					
+				</div>
+				<input type="text" tabindex="0" class="textInput">
+			</div>
+		  </div>
+	  </div>
+
+      <div class="row">
+		<div class="span6" style="width: 600px; float: none; margin: 0 auto;">
+			<div class="span3">
+			  <h2>About</h2>
+			   <p>An implementation of <a href="http://play.typeracer.com/">TypeRacer</a> for Code.</p>
+			  <p><a class="btn" href="about.html">View details &raquo;</a></p>
+			</div>
+			<div class="span3">
+			  <h2>Creators</h2>
+			  <p><a href="https://twitter.com/Hedonistica" class="twitter-follow-button" data-show-count="false">Follow @Hedonistica</a>
+			  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+			  <p><a href="https://twitter.com/curtisgagliardi" class="twitter-follow-button" data-show-count="false">Follow @curtisgagliardi</a></p>
+			  <p><a href="https://twitter.com/BobSpecht" class="twitter-follow-button" data-show-count="false">Follow @BobSpecht</a></p>
+			</div>
+		</div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Code Racer 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+	
+	<script type="text/javascript">
+		$(".start-coding").click(function () {
+			$(".select-unit").hide();
+			$(".code-unit").show();
+		});
+	</script>
+
+  </body>
+</html>
