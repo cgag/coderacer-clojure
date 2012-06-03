@@ -1,5 +1,14 @@
+#todo:
+ # escape charcters in the target-text div
+ # translate input special characters to entities
+ # get rid of hardcoding on token[0] (removed trailing \n)
+ # toggle css when updating current token
+ # find cities to lived in given whatever critera
+ 
 codeHtml = (json) ->
-  json["query"]["pages"]["1514"]["revisions"][0]["*"]
+  pages = json["query"]["pages"]
+  for prop of pages
+    return pages[prop]["revisions"][0]["*"]
 
 codeSamples = (html) ->
   codeReg = /<lang.*?>([.\s\S]*?)<\/lang>/g
@@ -10,6 +19,8 @@ codeSamples = (html) ->
 
 j = (s) ->
   JSON.stringify(s)
+
+
 
 codeSplit = (code) ->
   tokens = []
@@ -33,10 +44,10 @@ codeSplit = (code) ->
 codeJoin = (splitCode) ->
   output = ""
   for token in splitCode
-    console.log("Token:" + token)
+    #console.log("Token:" + token)
     if token[token.length - 1] != "\n"
       output += token + " "
-      console.log("outout:" + output)
+      #console.log("outout:" + output)
     else
       output += token
   output
@@ -46,26 +57,41 @@ wrapCode = (code) ->
   splitCode = codeSplit(code)
   output = ""
   for token, i in splitCode
-    console.log("Token:" + token)
+    #console.log("Token:" + token)
     if token[token.length - 1] != "\n"
       output += "<span id=\"token-#{i}\">" + token + " " + "</span>"
-      console.log("outout:" + output)
+      #console.log("outout:" + output)
     else
       output += "<span id=\"token-#{i}\">" + token + "</span>"
   output
 
 
+entityMap = {
+    "<": "&lt;",
+    ">": "&gt;",
+    "&": "&amp;"
+  }
+
+entify = (char) ->
+  entityMap[char] || char
+
+unentify = (s) ->
+  for k,v of entityMap
+    return k if s == v
+  return s
+
 preEscape = (preCode) ->
   output = ""
   for char in preCode
-    if char == "<"
-      output = output.concat("&lt;")
-    else if char == ">"
-      output = output.concat("&gt;")
-    else if char == "&"
-      output = output.concat("&amp;")
-    else
-      output = output.concat(char)
+    output += entify(char)
+    #if char == "<"
+      #output = output.concat("&lt;")
+    #else if char == ">"
+      #output = output.concat("&gt;")
+    #else if char == "&"
+      #output = output.concat("&amp;")
+    #else
+      #output = output.concat(char)
   output
 
 
@@ -74,14 +100,16 @@ jQuery ->
   html = codeHtml(resp)
   $("body").append("<pre>" + html + "</pre>")
 
-  sample = codeSamples(html)[0]
+  sample = codeSamples(html)[0] #preEscape
 
-  console.log(sample)
+  #console.log(sample)
   tokens = codeSplit(sample)
+  console.log(tokens)
+  escapedSample = preEscape(sample)
+  #tokens[0] = "#include"
+  $("#target-text").append("<pre>" + wrapCode(escapedSample) + "</pre>")
 
-  $("#target-text").append("<pre>" + wrapCode(sample) + "</pre>")
-
-  wordSoFar = ""
+  inputToken = ""
   currentToken = 0
   $("#token-#{currentToken}").addClass("current")
   $("#token-#{currentToken}").addClass("match")
@@ -89,36 +117,50 @@ jQuery ->
   setMatch = () ->
     $("#token-#{currentToken}").addClass("match")
     $("#token-#{currentToken}").removeClass("miss")
- 
+    console.log("currentToken: " + currentToken)
+
   setMiss = () ->
+    console.log("currentToken: " + currentToken)
     $("#token-#{currentToken}").addClass("miss")
     $("#token-#{currentToken}").removeClass("match")
- 
+
+  updateCurrentCSS = () ->
+    $("#token-#{currentToken}").addClass("currrent")
+    $("#token-#{currentToken - 1}").removeClass("currrent")
+    $("#token-#{currentToken - 1}").removeClass("match")
+
 
   handleInput = (e) ->
-    if e.which == 8 && wordSoFar.length > 0
-      wordSoFar = wordSoFar.slice(0, wordSoFar.length - 1)
-      #$("#target-text > pre").append(" " + wordSoFar)
+    if e.which == 8 && inputToken.length > 0
+      inputToken = inputToken.slice(0, inputToken.length - 1)
     else if e.type == "keypress"
-      wordSoFar = wordSoFar.concat(String.fromCharCode(e.which))
+      inputToken = inputToken.concat(unentify(String.fromCharCode(e.which)))
 
-    #$("#target-text > pre").append(" " + wordSoFar)
-    if tokens[currentToken].slice(0, wordSoFar.length) == wordSoFar
+    console.log("inputToken in handleInput topLevel: " + inputToken)
+    if tokens[currentToken].slice(0, inputToken.length) == inputToken
+      if inputToken.length == tokens[currentToken].length
+        console.log("inputToken.length == tokens[currentToken].length: " + tokens[currentToken].length)
+        currentToken += 1
+        inputToken = ""
+        updateCurrentCSS()
+        $("#typing-area").val("")
+      console.log("currentToken: " + currentToken)
+      console.log("inputToken setMatch level: " + inputToken)
+      console.log("tokens[currentToken].slice: " + tokens[currentToken].slice(0, inputToken.length))
       setMatch()
-          #$("#target-text > pre").append(" match" + "\n")
     else
+      console.log("missed")
       setMiss()
-      #$("#target-text > pre").append(" miss" + "\n")
 
-    $("#entered-word").text("entered: " + wordSoFar + "\n")
+    $("#entered-word").text("entered: " + inputToken + "\n")
     $("#target-word").text("target: " + tokens[currentToken] + "\n")
 
   $("#typing-area").keypress(handleInput)
   $("#typing-area").keydown(handleInput)
 
 
-  console.log(tokens)
+  #console.log(tokens)
   $("body").append("=====<br /><pre>" + escape(codeJoin(tokens)) + "</pre>")
   $("body").append("=====<br /><pre>" + preEscape(codeJoin(tokens)) + "</pre>")
 
-  console.log(wrapCode(sample))
+  #console.log(wrapCode(sample))
