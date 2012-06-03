@@ -1,5 +1,10 @@
 span.current {
+  /*text-decoration: underline;*/
+}
+
+span.whitespace {
   text-decoration: underline;
+  color: gray;
 }
 
 span.miss {

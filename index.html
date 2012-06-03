@@ -10,6 +10,7 @@
     <script type="text/javascript" src="coderacer.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
     type="text/javascript"></script>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="coderacer.css" />
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
@@ -37,25 +38,25 @@
     </div>
 
     <div class="container">
-	  <div class="span6" style="float: none; margin: 0 auto;">
+	  <div class="span10" style="float: none; margin: 0 auto;">
 		  <div class="hero-unit main-unit">
         <div class="select-unit">
           <div class="option">
             <center><h2>Language</h2></center>
-            <select>
+            <select id="lang">
               <option value="any">Any</option>
-              <option value="javascript">Javascript</option>
-              <option value="python">Python</option>
+              <option value="C">C</option>
               <option value="ruby">Ruby</option>
+              <option value="clojure">Clojure</option>
             </select>
           </div>
           <div class="option">
             <center><h2>Problem</h2></center>
-            <select>
+            <select id="problem">
               <option value="any">Any</option>
-              <option value="99beers">99 Beers on the Wall</option>
-              <option value="bubblesort">Bubble Sort</option>
-              <option value="helloworld">Hello World</option>
+              <option value="Anonymous_recursion">Anonymous Recursion</option>
+              <option value="Anagrams">Anagrams</option>
+              <option value="Ackermann_function">Ackermann Function</option>
             </select>
           </div>
           <a class="btn btn-inverse btn-large start-coding">Start coding &raquo;</a>
@@ -100,6 +101,13 @@
 		$(".start-coding").click(function () {
 			$(".select-unit").hide();
 			$("#code-unit").show();
+      lang = $("#lang option:selected").val();
+      problem = $("#problem option:selected").val();
+      console.log("problem: " + problem);
+      console.log("lang: " + lang);
+      console.log("whitespace: " + allWhiteSpace("hello"));
+      console.log("arry: " + getProblems());
+      race();
 		});
 	</script>
 

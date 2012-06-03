@@ -1,28 +1,13 @@
-#todo:
- # escape charcters in the code-text div
- # translate input special characters to entities
- # get rid of hardcoding on token[0] (removed trailing \n)
- # toggle css when updating current token
- # if you hit enter at the wrong time everythign breaks
-
-debug = false
-
-codeHtml = (json) ->
-  pages = json["query"]["pages"]
-  for prop of pages
-    return pages[prop]["revisions"][0]["*"]
-
-
-codeSamples = (html) ->
-  codeReg = /<lang.*?>([.\s\S]*?)<\/lang>/g
-  samples = []
-  while (arr = codeReg.exec(html))
-    samples.push(arr[1])
-  samples #unnecessary?
-
+#debug = true
 
 j = (s) ->
-  JSON.stringify(s) 
+  JSON.stringify(s)
+
+# later
+#removeTrailingWhiteSpace = (tokens) ->
+  #for token in tokens
+    #token.replace(/(\s*)\n/, "" + "\n")
+    #???
 
 codeSplit = (code) ->
   tokens = []
@@ -80,31 +65,78 @@ preEscape = (preCode) ->
   output = ""
   for char in preCode
     output += entify(char)
-    #if char == "<"
-      #output = output.concat("&lt;")
-    #else if char == ">"
-      #output = output.concat("&gt;")
-    #else if char == "&"
-      #output = output.concat("&amp;")
-    #else
-      #output = output.concat(char)
   output
 
-allWhiteSpace = (s) ->
+window.allWhiteSpace = (s) ->
   $.trim(s).length == 0
 
+window.getProblems = () ->
+  html = $.trim($.ajax({
+            url: "http://localhost:8000/data/parsed/"
+            dataType: "html"
+            async: false}).responseText)
+  console.log("html: " + html)
+  arr = []
+  $(html).find("a").each((i, el) -> arr.push(el.text.slice(0, el.text.length - 1)))
+  arr
 
-jQuery ->
-  #ajax("post", localhost/api.php?random
-  resp = {"query":{"pages":{"1514":{"pageid":1514,"ns":0,"title":"Hello world\/Text","revisions":[{"*":"=={{header|C}}==\n{{works with|gcc|4.0.1}}\n<lang c>#include <stdlib.h>\n#include <stdio.h>\n\nint main(void)\n{\n  printf(\"Goodbye, World!\\n\");\n  return EXIT_SUCCESS;\n}<\/lang>\nOr:\n<lang c>#include <stdlib.h>\n#include <stdio.h>\n\nint main(void)\n{\n  puts(\"Goodbye, World!\");\n  return EXIT_SUCCESS;\n}<\/lang>"}]}}},"query-continue":{"revisions":{"rvstartid":137809}}} 
-  html = codeHtml(resp)
+#jQuery ->
+  #alert("hi")
+  #problems = getProblems
+  #$.each(problems, (value) ->
+    #alert("valie: " + value)
+    #$('#problem').append($('<option>', { value : value }).text(value.replace('_', ' '))))
 
-  sample = codeSamples(html)[0] #preEscape
+window.race = ->
+  getProblems = () ->
+  getProblems()
+  samples = []
+
+  problems = ["Anonymous_recursion", "Anagrams", "Ackermann_function"]
+  languages = ["c", "ruby", "clojure"]
+
+  lang = $("#lang option:selected").val()
+  problem = $("#problem option:selected").val()
+
+  console.log("problem: " + problem)
+  console.log("lang: " + lang)
+
+  sample = "hello"
+  console.log("sample: " + sample)
+  sample = $.trim($.ajax({
+            url: "http://localhost:8000/data/parsed/#{problem}/#{lang}",
+            dataType: "text"
+            async: false}).responseText)
+  console.log("sample: " + sample)
+
+  #samples = [
+    #$.trim($.ajax({
+      #url: "http://localhost:8000/data/parsed/Anonymous_recursion/clojure",
+      #dataType: "text"
+      #async: false
+    #}).responseText),
+    #$.trim($.ajax({
+      #url: "http://localhost:8000/data/parsed/Anagrams/clojure",
+      #dataType: "text"
+      #async: false
+    #}).responseText)]
+
+
+
+  #code = $.ajax({
+    #url: "http://localhost:8000/data/parsed/99_Bottles_of_Beer/fortran",
+    #dataType: "text"
+    #async: false
+  #}).responseText
+
+  #html = codeHtml(resp)
+
+  #sample = samples[2] #code # codeSamples(html)[0] #preEscape
 
   tokens = codeSplit(sample)
   escapedSample = preEscape(sample)
   #tokens[0] = "#include"
-  $("#code-text").append("<pre>" + wrapCode(escapedSample) + "</pre>")
+  $("#code-text").append("<pre><span id=\"code-style\">" + wrapCode(escapedSample) + "</span></pre>")
 
   inputToken = ""
   currentToken = 0
@@ -121,15 +153,15 @@ jQuery ->
     $("#token-#{currentToken}").removeClass("match")
 
   updateCurrentCSS = (currentToken) ->
+    console.log("currentToken: " + tokens[currentToken])
+    if allWhiteSpace(tokens[currentToken])
+      $("#token-#{currentToken}").addClass("whitespace")
     $("#token-#{currentToken}").addClass("current")
     $("#token-#{currentToken - 1}").removeClass("current")
     $("#token-#{currentToken - 1}").removeClass("match")
-
+    $("#token-#{currentToken - 1}").removeClass("whitespace")
 
   handleInput = (e) ->
-    if debug
-      console.log("e.type: " + e.type)
-      console.log("e.which: " + e.which)
     if e.which == 8 && inputToken.length > 0
       inputToken = inputToken.slice(0, inputToken.length - 1)
     else if e.which == 9
@@ -164,6 +196,5 @@ jQuery ->
   $("#textInput").keydown(handleInput)
 
   if debug
-    $("body").append("<pre>" + html + "</pre>")
     $("body").append("=====<br /><pre>" + escape(codeJoin(tokens)) + "</pre>")
     $("body").append("=====<br /><pre>" + preEscape(codeJoin(tokens)) + "</pre>")
