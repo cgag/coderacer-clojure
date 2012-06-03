@@ -10,9 +10,10 @@ $queryRevisions =
 	'rvlimit' => '1',
 	'rvdir' => 'older',
 	'generator' => 'search',
-	'gsrsearch' => 'Apply%20a%20callback%20to%20an%20array',
+	'gsrsearch' => 'Apply a callback to an array',
 	'gsrlimit' => '1',
-	'rvsection' => '18',
+	'rvexpandtemplates' => '1',
+	//	'rvparse' => '1',
 	'format' => 'json'
 	);
 
@@ -42,6 +43,6 @@ function makeRequest($base, $params, $localStore) {
 }
 
 
-makeRequest($apiBase, $queryCats, 'localCopy.json');
+makeRequest($apiBase, $queryRevisions, 'localRev.json');
 
 ?>
