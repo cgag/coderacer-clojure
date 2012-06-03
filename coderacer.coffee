@@ -1,5 +1,5 @@
 #todo:
- # escape charcters in the target-text div
+ # escape charcters in the code-text div
  # translate input special characters to entities
  # get rid of hardcoding on token[0] (removed trailing \n)
  # toggle css when updating current token
@@ -103,7 +103,7 @@ jQuery ->
   tokens = codeSplit(sample)
   escapedSample = preEscape(sample)
   #tokens[0] = "#include"
-  $("#target-text").append("<pre>" + wrapCode(escapedSample) + "</pre>")
+  $("#code-text").append("<pre>" + wrapCode(escapedSample) + "</pre>")
 
   inputToken = ""
   currentToken = 0
@@ -135,7 +135,7 @@ jQuery ->
         currentToken += 1
         inputToken = ""
         updateCurrentCSS(currentToken)
-        $("#typing-area").val("")
+        $("#textInput").val("")
       e.preventDefault()
     else if e.which == 13
       inputToken = inputToken.concat("\n")
@@ -148,7 +148,7 @@ jQuery ->
         currentToken += 1
         inputToken = ""
         updateCurrentCSS(currentToken)
-        $("#typing-area").val("")
+        $("#textInput").val("")
         e.preventDefault()
       setMatch(currentToken)
     else
@@ -157,8 +157,8 @@ jQuery ->
     $("#entered-word").text("entered: " + inputToken + "\n")
     $("#target-word").text("target: " + tokens[currentToken] + "\n")
 
-  $("#typing-area").keypress(handleInput)
-  $("#typing-area").keydown(handleInput)
+  $("#textInput").keypress(handleInput)
+  $("#textInput").keydown(handleInput)
 
   $("body").append("=====<br /><pre>" + escape(codeJoin(tokens)) + "</pre>")
   $("body").append("=====<br /><pre>" + preEscape(codeJoin(tokens)) + "</pre>")

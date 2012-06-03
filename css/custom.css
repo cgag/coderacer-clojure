@@ -25,7 +25,7 @@
 	margin-left: -60px;
 }
 
-.code-unit input, .select-unit select {
+.code-unit input textarea, .select-unit select {
 	font-size: 22px;
 	color: #383834;
 	font-weight: normal;
@@ -44,7 +44,7 @@
 	font-weight: normal;
 }
 
-.code-text {
+#code-text {
 	min-height: 350px;
 	padding-bottom: 20px;
 }

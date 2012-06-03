@@ -39,33 +39,35 @@
     <div class="container">
 	  <div class="span6" style="float: none; margin: 0 auto;">
 		  <div class="hero-unit main-unit">
-			<div class="select-unit">
-				<div class="option">
-					<center><h2>Language</h2></center>
-					<select>
-						<option value="any">Any</option>
-						<option value="javascript">Javascript</option>
-						<option value="python">Python</option>
-						<option value="ruby">Ruby</option>
-					</select>
-				</div>
-				<div class="option">
-					<center><h2>Problem</h2></center>
-					<select>
-						<option value="any">Any</option>
-						<option value="99beers">99 Beers on the Wall</option>
-						<option value="bubblesort">Bubble Sort</option>
-						<option value="helloworld">Hello World</option>
-					</select>
-				</div>
-				<a class="btn btn-inverse btn-large start-coding">Start coding &raquo;</a>
-			</div>
-			<div style="display: none" class="code-unit">
-				<div class="code-text">
-					
-				</div>
-				<input type="text" tabindex="0" class="textInput">
-			</div>
+        <div class="select-unit">
+          <div class="option">
+            <center><h2>Language</h2></center>
+            <select>
+              <option value="any">Any</option>
+              <option value="javascript">Javascript</option>
+              <option value="python">Python</option>
+              <option value="ruby">Ruby</option>
+            </select>
+          </div>
+          <div class="option">
+            <center><h2>Problem</h2></center>
+            <select>
+              <option value="any">Any</option>
+              <option value="99beers">99 Beers on the Wall</option>
+              <option value="bubblesort">Bubble Sort</option>
+              <option value="helloworld">Hello World</option>
+            </select>
+          </div>
+          <a class="btn btn-inverse btn-large start-coding">Start coding &raquo;</a>
+        </div>
+        <div style="display: none" id="code-unit">
+          <div id="code-text">
+
+          </div>
+          <!--<input type="text" tabindex="0" id="textInput">-->
+          <textarea id="textInput" rows="1" cols="80">
+          </textarea>
+        </div>
 		  </div>
 	  </div>
 
@@ -97,7 +99,7 @@
 	<script type="text/javascript">
 		$(".start-coding").click(function () {
 			$(".select-unit").hide();
-			$(".code-unit").show();
+			$("#code-unit").show();
 		});
 	</script>
 

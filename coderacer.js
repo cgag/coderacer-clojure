@@ -134,7 +134,7 @@
     sample = codeSamples(html)[0];
     tokens = codeSplit(sample);
     escapedSample = preEscape(sample);
-    $("#target-text").append("<pre>" + wrapCode(escapedSample) + "</pre>");
+    $("#code-text").append("<pre>" + wrapCode(escapedSample) + "</pre>");
     inputToken = "";
     currentToken = 0;
     $("#token-" + currentToken).addClass("current");
@@ -162,7 +162,7 @@
           currentToken += 1;
           inputToken = "";
           updateCurrentCSS(currentToken);
-          $("#typing-area").val("");
+          $("#textInput").val("");
         }
         e.preventDefault();
       } else if (e.which === 13) {
@@ -176,7 +176,7 @@
           currentToken += 1;
           inputToken = "";
           updateCurrentCSS(currentToken);
-          $("#typing-area").val("");
+          $("#textInput").val("");
           e.preventDefault();
         }
         setMatch(currentToken);
@@ -186,8 +186,8 @@
       $("#entered-word").text("entered: " + inputToken + "\n");
       return $("#target-word").text("target: " + tokens[currentToken] + "\n");
     };
-    $("#typing-area").keypress(handleInput);
-    $("#typing-area").keydown(handleInput);
+    $("#textInput").keypress(handleInput);
+    $("#textInput").keydown(handleInput);
     $("body").append("=====<br /><pre>" + escape(codeJoin(tokens)) + "</pre>");
     return $("body").append("=====<br /><pre>" + preEscape(codeJoin(tokens)) + "</pre>");
   });
