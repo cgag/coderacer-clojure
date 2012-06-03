@@ -152,7 +152,7 @@
       return $("#target-word").text("target: " + tokens[currentToken] + "\n");
     };
     $("#typing-area").keypress(handleInput);
-    $("#typing-area").keyup(handleInput);
+    $("#typing-area").keydown(handleInput);
     console.log(tokens);
     $("body").append("=====<br /><pre>" + escape(codeJoin(tokens)) + "</pre>");
     $("body").append("=====<br /><pre>" + preEscape(codeJoin(tokens)) + "</pre>");

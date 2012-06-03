@@ -114,7 +114,7 @@ jQuery ->
     $("#target-word").text("target: " + tokens[currentToken] + "\n")
 
   $("#typing-area").keypress(handleInput)
-  $("#typing-area").keyup(handleInput)
+  $("#typing-area").keydown(handleInput)
 
 
   console.log(tokens)
