@@ -1,5 +1,7 @@
 <?php
 
+$dataDir = 'data/';
+
 function parseCategories($inFile, $outFile) {
   $response = file_get_contents($inFile);
   $response = json_decode($response);
@@ -8,16 +10,13 @@ function parseCategories($inFile, $outFile) {
   $sink = fopen($outFile, 'w');
   foreach ($cats as $cat) {
     $i = $cat->title;
-    // attempt to sanitize filenames. Consider using md5() instead.
-    $i = preg_replace('/\s/', '_', $i);
-    $i = preg_replace('/\//', '-', $i);
-    $i = preg_replace('/\"/', '+', $i);
-    fwrite($sink, "$i\n");
+    fwrite($sink, $i . "\n");
   }
   fclose($sink);
 }
 
-function parseRevisions($inFile) {
+function parseRevisions($inFile, $outPath) {
+  echo "Parsing $inFile\n";
   // Begin: terrible-hack to handle Mediawiki's json tree. There must be a better way... but not before 11am!
   $loaded = file_get_contents($inFile);
   $response = json_decode($loaded);
@@ -32,10 +31,24 @@ function parseRevisions($inFile) {
   foreach ($results[0] as $lang) {
     $result = preg_match('/\<lang\s*(\w*)\>(.*?)\<\/lang\>/s', $lang, $code);
     if ( sizeof($code) )
-      file_put_contents("data/$code[1]", $code[2]); // write each bare language example to a file
+      if (! is_dir($outPath) ) {
+	mkdir($outPath);
+	echo $code[1] . "\n";
+      }
+    file_put_contents("$outPath/$code[1]", $code[2]); // write each bare language example to a file
   }
 }
-parseCategories('data/problems.json', 'data/problems.txt');
-//  parseRevisions('data/revisions.json');
 
+function parseAllRevisions($dataDir) {
+  $files = scandir($dataDir);
+  foreach ($files as $file) {
+    $pathParts = pathinfo($file);
+    if ($pathParts['extension'] == 'json') {
+      parseRevisions($dataDir . $file, $dataDir . "parsed/" . $pathParts['filename']);
+    }
+  }
+}
+
+parseCategories('data/problems.json', 'data/problems.txt');
+  parseAllRevisions($dataDir);
 ?>
