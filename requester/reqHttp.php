@@ -1,6 +1,10 @@
 <?php
 require_once "HTTP/Request.php";
 
+$dataDir = 'data/';
+$revisionsStore = $dataDir . 'revisions.json';
+$catStore = $dataDir . 'problems.json';
+
 $apiBase = 'http://rosettacode.org/mw/api.php?';
 $queryRevisions = 
   array(
@@ -41,8 +45,7 @@ function makeRequest($base, $params, $localStore) {
 
   file_put_contents($localStore, $response);
 }
-
-
-makeRequest($apiBase, $queryRevisions, 'localRev.json');
+ makeRequest($apiBase, $queryCats, $catsStore);
+ makeRequest($apiBase, $queryRevisions, $revisionsStore);
 
 ?>
