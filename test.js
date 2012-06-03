@@ -31,12 +31,9 @@
     for (_i = 0, _len = code.length; _i < _len; _i++) {
       char = code[_i];
       if (char === " ") {
-        if (token.length === 0 || token[token.length - 1] === " ") {
-          token = token.concat(" ");
-        } else {
-          tokens.push(token);
-          token = "";
-        }
+        token = token.concat(char);
+        tokens.push(token);
+        token = "";
       } else if (char === "\n") {
         token = token.concat(char);
         tokens.push(token);
@@ -69,11 +66,7 @@
     output = "";
     for (i = _i = 0, _len = splitCode.length; _i < _len; i = ++_i) {
       token = splitCode[i];
-      if (token[token.length - 1] !== "\n") {
-        output += ("<span id=\"token-" + i + "\">") + token + " " + "</span>";
-      } else {
-        output += ("<span id=\"token-" + i + "\">") + token + "</span>";
-      }
+      output += ("<span id=\"token-" + i + "\">") + token + "</span>";
     }
     return output;
   };

@@ -4,11 +4,12 @@
  # get rid of hardcoding on token[0] (removed trailing \n)
  # toggle css when updating current token
  # find cities to lived in given whatever critera
- 
+
 codeHtml = (json) ->
   pages = json["query"]["pages"]
   for prop of pages
     return pages[prop]["revisions"][0]["*"]
+
 
 codeSamples = (html) ->
   codeReg = /<lang.*?>([.\s\S]*?)<\/lang>/g
@@ -17,9 +18,9 @@ codeSamples = (html) ->
     samples.push(arr[1])
   samples #unnecessary?
 
+
 j = (s) ->
   JSON.stringify(s)
-
 
 
 codeSplit = (code) ->
@@ -27,11 +28,12 @@ codeSplit = (code) ->
   token = ""
   for char in code
     if char == " "
-      if token.length == 0 || token[token.length - 1] == " "
-        token = token.concat(" ")
-      else
-        tokens.push(token)
-        token = ""
+      #if token.length == 0 || token[token.length - 1] == " "
+        #token = token.concat(" ")
+      #else
+      token = token.concat(char)
+      tokens.push(token)
+      token = ""
     else if char == "\n"
       token = token.concat(char)
       tokens.push(token)
@@ -58,11 +60,11 @@ wrapCode = (code) ->
   output = ""
   for token, i in splitCode
     #console.log("Token:" + token)
-    if token[token.length - 1] != "\n"
-      output += "<span id=\"token-#{i}\">" + token + " " + "</span>"
-      #console.log("outout:" + output)
-    else
-      output += "<span id=\"token-#{i}\">" + token + "</span>"
+    #if token[token.length - 1] != "\n"
+      #output += "<span id=\"token-#{i}\">" + token + " " + "</span>"
+      ##console.log("outout:" + output)
+    #else
+    output += "<span id=\"token-#{i}\">" + token + "</span>"
   output
 
 
