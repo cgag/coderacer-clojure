@@ -5,6 +5,8 @@
  # toggle css when updating current token
  # if you hit enter at the wrong time everythign breaks
 
+debug = false
+
 codeHtml = (json) ->
   pages = json["query"]["pages"]
   for prop of pages
@@ -20,8 +22,7 @@ codeSamples = (html) ->
 
 
 j = (s) ->
-  JSON.stringify(s)
-
+  JSON.stringify(s) 
 
 codeSplit = (code) ->
   tokens = []
@@ -94,9 +95,9 @@ allWhiteSpace = (s) ->
 
 
 jQuery ->
+  #ajax("post", localhost/api.php?random
   resp = {"query":{"pages":{"1514":{"pageid":1514,"ns":0,"title":"Hello world\/Text","revisions":[{"*":"=={{header|C}}==\n{{works with|gcc|4.0.1}}\n<lang c>#include <stdlib.h>\n#include <stdio.h>\n\nint main(void)\n{\n  printf(\"Goodbye, World!\\n\");\n  return EXIT_SUCCESS;\n}<\/lang>\nOr:\n<lang c>#include <stdlib.h>\n#include <stdio.h>\n\nint main(void)\n{\n  puts(\"Goodbye, World!\");\n  return EXIT_SUCCESS;\n}<\/lang>"}]}}},"query-continue":{"revisions":{"rvstartid":137809}}} 
   html = codeHtml(resp)
-  $("body").append("<pre>" + html + "</pre>")
 
   sample = codeSamples(html)[0] #preEscape
 
@@ -126,8 +127,9 @@ jQuery ->
 
 
   handleInput = (e) ->
-    console.log("e.type: " + e.type)
-    console.log("e.which: " + e.which)
+    if debug
+      console.log("e.type: " + e.type)
+      console.log("e.which: " + e.which)
     if e.which == 8 && inputToken.length > 0
       inputToken = inputToken.slice(0, inputToken.length - 1)
     else if e.which == 9
@@ -154,11 +156,14 @@ jQuery ->
     else
       setMiss(currentToken)
 
-    $("#entered-word").text("entered: " + inputToken + "\n")
-    $("#target-word").text("target: " + tokens[currentToken] + "\n")
+    if debug
+      $("#entered-word").text("entered: " + inputToken + "\n")
+      $("#target-word").text("target: " + tokens[currentToken] + "\n")
 
   $("#textInput").keypress(handleInput)
   $("#textInput").keydown(handleInput)
 
-  $("body").append("=====<br /><pre>" + escape(codeJoin(tokens)) + "</pre>")
-  $("body").append("=====<br /><pre>" + preEscape(codeJoin(tokens)) + "</pre>")
+  if debug
+    $("body").append("<pre>" + html + "</pre>")
+    $("body").append("=====<br /><pre>" + escape(codeJoin(tokens)) + "</pre>")
+    $("body").append("=====<br /><pre>" + preEscape(codeJoin(tokens)) + "</pre>")
