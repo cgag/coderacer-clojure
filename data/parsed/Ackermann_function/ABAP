@@ -1,0 +1,35 @@
+report z_ackermann
+data: lv_local type i,
+      lv_y type i,
+      lv_x type i.
+
+do 7 times.
+  lv_y = sy-index - 1.
+  do 5 times.
+    lv_x = sy-index - 1.
+    perform ackermann using lv_y lv_x changing lv_local.
+    write : / 'A(', (1) lv_x, ',', (1) lv_y, ') = ', (4) lv_local left-justified.
+  enddo.
+enddo.
+
+form ackermann using iv_x type i iv_y type i changing ev_out type i.
+  data: lv_x type i,
+        lv_y type i.
+
+  if iv_x is initial.
+    ev_out = iv_y + 1.
+    return.
+  endif.
+
+  lv_x = iv_x - 1.
+
+  if iv_y is initial.
+    perform ackermann using lv_x 1 changing ev_out.
+    return.
+  endif.
+
+  lv_y = iv_y - 1.
+
+  perform ackermann using iv_x lv_y changing lv_y.
+  perform ackermann using lv_x lv_y changing ev_out.
+endform.

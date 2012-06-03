@@ -1,0 +1,16 @@
+#define std'basic'*.
+#define std'math'*.
+
+// --- Program ---
+
+#symbol Program =>
+[
+    #var a := 'program'input >> Integer.
+    #var b := 'program'input >> Integer.
+    
+    'program'output << a << " + " << b << " = " << a + b << "%n".
+    'program'output << a << " - " << b << " = " << a - b << "%n".
+    'program'output << a << " * " << b << " = " << a * b << "%n".
+    'program'output << a << " / " << b << " = " << a / b << "%n". // truncates towards 0
+    'program'output << a << " %% " << b << " = " << (a~emath modulus:b) << "%n". // matches sign of first operand
+].

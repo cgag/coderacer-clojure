@@ -1,0 +1,41 @@
+import std.stdio;
+import std.string;
+char[][]set1 = ["the","that","a"];
+char[][]set2 = ["frog","elephant","thing"];
+char[][]set3 = ["walked","treaded","grows"];
+char[][]set4 = ["slowly","quickly"];
+
+// this amb function takes a function pointer to a comparison function and the possibilities that need to be checked
+char[][]amb(bool function(char[],char[])comp,char[][][]options,char[]prev = "") {
+        char[][]res;
+        char[][]set = options[0];
+        options = options[1..$];
+        foreach(opt;set) {
+                // if this is the base call, prev is "" and we need to continue (unfortunately, this is array specific,
+                // but could be reworked with pointers)
+                if (!prev.length || comp(prev,opt)) {
+                        // take care of the case where we have no options left
+                        if (!options.length) return [opt];
+                        // traverse into the tree
+                        res = amb(comp,options,opt);
+                        // if it was a failure, try the next one
+                        if (res is null) continue;
+                        // we have a match!
+                        else return opt~res;
+                }
+        }
+        // no matches
+        return null;
+}
+
+bool comparator(char[]left,char[]right) {
+        return left[$-1] == right[0];
+}
+
+int main() {
+        // pass in the comparator and the available sets
+        char[][]ret = amb(&comparator,[set1,set2,set3,set4]);
+        if (ret is null) writefln("No matches found!");
+        else writefln("%s",ret.join(" "));
+        return 0;
+}

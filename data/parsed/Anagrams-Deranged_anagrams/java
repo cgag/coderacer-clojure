@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+
+public class DerangedAnagrams {
+     
+    public static void main(String[] args) throws IOException {
+        String[][] anagrams = findAnagrams(readLines("unixdict.txt"));
+        String[] res = null;
+        for (String[] ana : anagrams) {
+            int j = ana[0].length() - 1;
+            while (j >= 0 && ana[0].charAt(j) != ana[1].charAt(j)) {
+                j--;
+            }
+            if (j == -1) {
+                res = ana;
+                break;
+            }
+        }
+        System.out.printf("result: %s %s\n", res[0], res[1]);
+    }
+
+    static String[][] findAnagrams(String[] words) {
+        Map<String, ArrayList<String>> map = new LinkedHashMap<String, ArrayList<String>>();
+        for (String w : words) {
+            char[] srt = w.toCharArray();
+            Arrays.sort(srt);
+            String key = String.valueOf(srt);
+            if (map.containsKey(key)) {
+                map.get(key).add(w);
+            } else {
+                ArrayList<String> v = new ArrayList<String>();
+                v.add(w);
+                map.put(key, v);
+            }
+        }
+        List<String[]> pairs = new ArrayList<String[]>();
+        for (List<String> v : map.values()) {
+            if (v.size() > 1) {
+                String[] wrds = v.toArray(new String[]{});
+                for (int i = 0; i < wrds.length - 1; i++) {
+                    pairs.add(new String[]{wrds[i], wrds[i + 1]});
+                }
+            }
+        }
+        return pairs.toArray(new String[][]{});
+    }
+
+    static public String[] readLines(String fn) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fn));
+        List<String> lines = new ArrayList<String>();
+        String line = null;
+        while ((line = br.readLine()) != null) 
+            lines.add(line.trim());
+        br.close();
+        Collections.sort(lines, new Comparator<String>() {
+            public int compare(String a, String b) {
+                return b.length() - a.length();
+            }
+        });
+        return lines.toArray(new String[]{});
+    }
+}

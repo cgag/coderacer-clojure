@@ -1,0 +1,31 @@
+#import <Foundation/Foundation.h>
+#import "frac.h"
+#import <math.h>
+
+int main()
+{
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+  int i;
+  for(i=2; i < 0x80000; i++) {
+    int candidate = i;
+    RCRationalNumber *sum = [RCRationalNumber valueWithNumerator: 1
+ 			                          andDenominator: candidate];
+    int factor;
+    for(factor=2; factor < sqrt((double)candidate); factor++) {
+      if ( (candidate % factor) == 0 ) {
+ 	sum = [[sum add: [RCRationalNumber valueWithNumerator: 1
+					       andDenominator: factor]]
+		add: [RCRationalNumber valueWithNumerator: 1
+					   andDenominator: (candidate/factor)]];
+      }
+    }
+    if ( [sum denominator] == 1 ) {
+      printf("Sum of recipr. factors of %d = %d exactly %s\n",
+	     candidate, [sum integer], ([sum integer]==1) ? "perfect!" : "");
+    }
+  }
+
+  [pool release];
+  return 0;
+}

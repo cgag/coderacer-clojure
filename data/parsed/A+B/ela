@@ -1,0 +1,5 @@
+open Con
+open Core
+open String
+
+readn! |> split (" ",) |> map toInt |> sum

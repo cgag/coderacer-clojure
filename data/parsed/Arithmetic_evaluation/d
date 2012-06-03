@@ -1,0 +1,186 @@
+//module evaluate ;
+import std.stdio, std.string, std.ctype, std.conv ;
+
+// simple stack template
+void push(T)(inout T[] stk, T top) { stk ~= top ; }
+T pop(T)(inout T[] stk, bool discard = true) {
+  T top ;
+  if (stk.length == 0) throw new Exception("Stack Empty") ;
+  top = stk[$-1] ;
+  if (discard) stk.length = stk.length - 1 ;
+  return top ;
+}
+
+alias int Type ;
+enum { Num, OBkt, CBkt, Add, Sub, Mul, Div } ; // Type
+string[] opChar = ["#","(",")","+","-","*","/"] ;
+int[]    opPrec = [0,-9,-9,1,1,2,2] ;
+
+abstract class Visitor { void visit(XP e) ; } 
+
+class XP {
+  Type type ;
+  string str ;
+  int pos ;  // optional, for dispalying AST struct.
+  XP LHS, RHS = null ;
+  this(string s = ")", int p = -1) {
+    str = s ; pos = p ;
+    type = Num ;
+    for(Type t = Div ; t > Num ; t--)
+      if(opChar[t] == s) type = t ;
+  }
+  int opCmp(XP rhs) { return opPrec[type] - opPrec[rhs.type] ; }
+  void accept(Visitor v) { v.visit(this) ; } ;
+}
+
+class AST {
+  XP root ;
+  XP[] num, opr ;
+  string xpr, token ;
+  int xpHead, xpTail ;
+
+  void joinXP(XP x) { x.RHS = num.pop() ; x.LHS = num.pop() ; num.push(x) ; }
+
+  string nextToken() {
+    while (xpHead < xpr.length && xpr[xpHead] == ' ') 
+      xpHead++ ; // skip spc
+    xpTail = xpHead ;
+    if(xpHead < xpr.length) {
+      token = xpr[xpTail..xpTail+1] ;
+      switch(token) {
+        case "(",")","+","-","*","/": // valid non-number
+          xpTail++ ; 
+          return token ;
+        default: // should be number
+          if(isdigit(token[0])) {
+            while(xpTail < xpr.length && isdigit(xpr[xpTail]))
+              xpTail++ ;
+            return xpr[xpHead..xpTail] ;          
+          } // else may be error 
+      } // end switch 
+    }
+    if(xpTail < xpr.length)
+      throw new Exception("Invalid Char <" ~ xpr[xpTail] ~ ">") ; 
+    return null ;
+  } // end nextToken
+
+  AST parse(string s) {
+    bool expectingOP ;
+    xpr = s ;
+    try {
+      xpHead = xpTail = 0 ; 
+      num = opr = null ;
+      root = null ;
+      opr.push(new XP) ; // CBkt, prevent evaluate null OP precidence
+      while((token = nextToken) !is null) {
+        XP tokenXP = new XP(token, xpHead) ;
+        if(expectingOP) {   // process OP-alike XP
+          switch(token) {
+            case ")":
+              while(opr.pop(false).type != OBkt)
+                joinXP(opr.pop()) ;
+              opr.pop() ;
+              expectingOP = true ; break ;
+            case "+","-","*","/":
+              while (tokenXP <= opr.pop(false))
+                joinXP(opr.pop()) ;
+              opr.push(tokenXP) ;
+              expectingOP = false ; break ;
+            default:
+              throw new Exception("Expecting Operator or ), not <" ~ token ~ ">") ;
+          }
+        } else {            // process Num-alike XP
+          switch(token) {
+            case "+","-","*","/",")":
+              throw new Exception("Expecting Number or (, not <" ~ token ~ ">") ;
+            case "(":
+              opr.push(tokenXP) ;
+              expectingOP = false ; break ;
+            default: // number
+              num.push(tokenXP) ;
+              expectingOP = true ; 
+          }
+        } 
+        xpHead = xpTail ;       
+      } // end while              
+      
+      while (opr.length > 1) // join pending Op
+        joinXP(opr.pop()) ;
+        
+    }catch(Exception e) {
+      writefln("%s\n%s\n%s^", e.msg, xpr, repeat(" ", xpHead)) ;
+      root = null ;
+      return this ;
+    }
+  
+    if(num.length != 1) { // should be one XP left
+      writefln("Parse Error...") ;
+      root = null ;
+    } else
+      root = num.pop() ;
+    return this ;
+  } // end Parse
+
+}  // end class AST
+
+// for display AST fancy struct
+void ins(inout char[][] s, string v, int p, int l) {
+  while(s.length < l + 1) s.length = s.length + 1 ;
+  while(s[l].length < p + v.length + 1) s[l] ~= " " ;
+  s[l][p..p +v.length] = v ;    
+}
+
+class calcVis : Visitor {
+  int result, level = 0 ;
+  string Result = null ;
+  char[][] Tree = null ;
+  static void opCall(AST a) {
+    if (a && a.root) {
+      calcVis c = new calcVis ;
+      a.root.accept(c) ;
+      for(int i = 1; i < c.Tree.length ; i++) { // more fancy
+        bool flipflop = false ; char mk = '.' ;
+        for(int j = 0 ; j < c.Tree[i].length ; j++) {
+          while(j >= c.Tree[i-1].length) c.Tree[i-1] ~= " " ;         
+          char c1 = c.Tree[i][j] ; char c2 = c.Tree[i-1][j] ;
+          if(flipflop && (c1 == ' ') && c2 == ' ')
+            c.Tree[i-1][j] = mk ;
+          if(c1 != mk && c1 != ' ' && (j == 0 || !isdigit(c.Tree[i][j-1])))
+            flipflop = !flipflop ;
+        }
+      }
+      foreach(t; c.Tree) writefln(t) ;
+      writefln("%s ==>\n%s = %s", a.xpr,c.Result,c.result) ;
+    } else
+      writefln("Evalute invalid or null Expression") ;
+  }
+  void visit(XP xp) {// calc. the value, display AST struct and eval order.
+    ins(Tree, xp.str, xp.pos, level) ;
+    level++ ;
+    if (xp.type == Num) {
+      Result ~= xp.str ;
+      result = toInt(xp.str) ;
+    } else {
+      Result ~= "(" ;
+      xp.LHS.accept(this) ;
+      int lhs = result ; 
+      Result ~= opChar[xp.type] ;
+      xp.RHS.accept(this) ;
+      Result ~= ")" ;
+      switch(xp.type) {
+        case Add: result = lhs + result ; break ;
+        case Sub: result = lhs - result ; break ;
+        case Mul: result = lhs * result ; break ;
+        case Div: result = lhs / result ; break ;
+        default: throw new Exception("Invalid type") ;
+      }
+    } // 
+    level-- ;
+  }
+}
+
+void main(string[] args) {
+  string expression = args.length > 1 ? join(args[1..$]," ") : 
+    "1 + 2*(3 - 2*(3 - 2)*((2 - 4)*5 - 22/(7 + 2*(3 - 1)) - 1)) + 1" ; // should be 60    
+  calcVis((new AST).parse(expression)) ;
+}

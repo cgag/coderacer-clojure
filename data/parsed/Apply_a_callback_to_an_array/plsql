@@ -1,0 +1,19 @@
+set serveroutput on
+declare
+      type myarray is table of number index by binary_integer;
+      x myarray;
+      i pls_integer;
+begin
+      -- populate array
+      for i in 1..5 loop
+              x(i) := i;
+      end loop;
+      i := x.first;
+      -- square array
+      while i is not null loop
+              x(i) := x(i)*x(i);
+              dbms_output.put_line(x(i));
+              i := x.next(i);
+      end loop;
+end;
+/

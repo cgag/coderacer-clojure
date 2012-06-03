@@ -1,0 +1,12 @@
+#lang racket
+
+(define (do-sum)
+    (display "Give a number: ")
+    (let ((a (string->number (read-line))))
+      (display "Give another number: ")
+      (let ((b (string->number (read-line))))
+        (if (and (number? a) (number? b))
+            (printf "Sum = ~a\n" (+  a b))
+            (display "a or b is not a number!")))))
+
+(do-sum)

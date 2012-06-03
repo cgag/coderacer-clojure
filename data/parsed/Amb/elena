@@ -1,0 +1,102 @@
+#define std'dictionary'*.
+#define std'basic'*.
+#define std'patterns'*.
+#define ext'routines'*.
+
+#subject joinable, with.
+
+#class(sign:(joinable, with)) JoinArg
+{
+    #field(arg:joinable) theFirst.
+    #field(arg:with)     theSecond.
+    
+    #method is
+    [
+        Control if:(theFirst@(theFirst length - 1) == theSecond@0).
+    ]
+}
+
+#class AmbEnumerator
+{
+    #field theValues.
+    
+    #role BOF
+    {
+        #method proceed
+        [
+            theValues $reset.
+            
+            #shift.
+            
+            ^ true.
+        ]
+    }
+    
+    #method new : Values
+    [
+        theValues := Values.
+        
+        #shift BOF.
+    ]
+     
+    #method proceed
+    [
+        ^ theValues $next.
+    ]
+    
+    #method clear
+    [
+        #shift BOF.
+    ]
+    
+    #method get = theValues.
+}
+
+#class AmbValue
+{
+    #field theValues.
+    #field theCurrent.
+    
+    #method enumerator = AmbEnumerator::$self.
+
+    #method $reset
+    [
+        theCurrent := theValues@0.
+    ]
+    
+    #method $next
+    [
+        theCurrent append &index:1.
+                
+        ^ theCurrent eof'isnot back:true | back:false.
+    ]
+    
+    #method new : Values
+    [
+        theValues := Values.
+        theCurrent := nil.
+    ]
+    
+    #outer theCurrent content.
+}
+
+#role AmbOperator
+{
+    #method seek : anExpression
+    [
+        (MultiEnumerator::self)~foreach seek: anExpression.
+    ]
+}
+
+#symbol Program =>
+[
+    #var A := AmbValue::("the","that","a").
+    #var B := AmbValue::("frog", "elephant", "thing").
+    #var C := AmbValue::("walked", "treaded", "grows").
+    #var D := AmbValue::("slowly", "quickly").
+    
+    (A, B, C, D)~AmbOperator seek:
+        => (Boolean::{ &joinable:A &with:B } and &joinable:B &with:C and &joinable:C &with:D).
+    
+    'program'Output << A << " " << B << " " << C << " " << D.
+].

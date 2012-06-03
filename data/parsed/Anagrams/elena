@@ -1,0 +1,51 @@
+#define std'dictionary'*.
+#define std'basic'*.
+#define std'patterns'*.
+#define std'routines'*.
+#define std'collections'*.
+#define ext'patterns'*.
+#define sys'dates'*.
+
+#symbol Str2IntListing
+    = Summing::{ &action_var:List &action_prop:literal }.
+
+#symbol Normalized : aLiteral
+    = WideStrValue::(Summing::String start:
+        (Scan::((Str2IntListing start:Scan::aLiteral)~eindexeditem~esort run: aPair => (aPair former < aPair later)))).
+
+#symbol Program =>
+[
+    #var aStart := Now.
+    
+    #var aDictionary := Dictionary.
+    
+    TextFileScan::"unixdict.txt" run:
+        aWord => 
+        [    
+            #var anItem := aDictionary@(Normalized::aWord).
+            
+            #if anItem content isnot &nillable
+            | [
+                anItem set &content:List.
+            ].
+            
+            anItem += WideStrValue::aWord.
+        ].
+        
+    aDictionary~eindexeditem~esort run: aPair => (aPair former count > aPair later count).
+    
+    #var aCounter := Integer::20.
+    Scan::aDictionary seek: aList =>
+    [
+        'program'output << aList << "%n".
+        
+        aCounter -= 1.
+        
+        ^(aCounter == 0).
+    ].
+    
+    #var anEnd := Now.
+    
+    #var aDiff := anEnd - aStart.
+    'program'output << "%nTime elapsed in msec:" << aDiff milliseconds.    
+].

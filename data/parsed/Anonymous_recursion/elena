@@ -1,0 +1,24 @@
+#define std'dictionary'*.
+#define std'patterns'*.
+
+#symbol fibo =
+{
+    evaluate : aValue
+    [
+        Control ifNot:(aValue < 0).
+
+        ^ aValue then: aValue => [
+              #if(aValue < 2)
+                ? [ ^ aValue. ]
+                | [ ^ $self evaluate:(aValue - 2) + $self evaluate:(aValue - 1). ].
+          ].
+    ]
+}.
+
+#symbol Program =>
+[
+    loop::{ &for:-1 &to:5 } run: anN =>
+    [
+        'program'output << "%nfib(" << anN << ")=" << (fibo eval:anN | back:"failed").
+    ].
+].

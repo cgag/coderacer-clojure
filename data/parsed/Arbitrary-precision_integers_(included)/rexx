@@ -1,0 +1,17 @@
+/*REXX program to show arbitrary precision integers. */
+numeric digits 200000     
+check = '62060698786608744707...92256259918212890625'
+
+call time 'R' 
+    n = 5 ** (4 ** (3**2))
+say 'elapsed time for the calculation:' format(time('E'),,2) "seconds.'
+say
+sampl = left(n, 20)"..."right(n, 20)
+
+say ' check:' check
+say 'sSample:' sampl
+say 'digits:' length(n)
+say
+
+if check=sampl then say 'passed!
+               else say 'failed!

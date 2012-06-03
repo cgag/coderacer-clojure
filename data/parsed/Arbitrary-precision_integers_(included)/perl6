@@ -1,0 +1,2 @@
+my $x = ~[**] 5, 4, 3, 2;
+say "5**4**3**2 = {substr($x,0,20)}...{substr($x,$x.chars-20)} and has {$x.chars} digits";

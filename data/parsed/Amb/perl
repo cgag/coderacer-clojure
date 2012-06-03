@@ -1,0 +1,13 @@
+$s1 = "the|,that|,a|";
+$s2 = "frog|,elephant|,thing|";
+$s3 = "walked|,treaded|,grows|";
+$s4 = "slowly|,quickly|";
+
+$sets = "{$s1}{$s2}{$s3}{$s4}";
+print "$sets\n";
+
+for( glob($sets) )
+{
+        tr/|/ /;
+        print "$_\n" if(m/\w+?(\w) \1\w+?(\w) \2\w+?(\w) \3\w+/);
+}

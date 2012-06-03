@@ -1,0 +1,15 @@
+#define std'patterns'*.
+#define std'routines'*.
+#define std'dictionary'*.
+
+#symbol PrintSecondPower
+    = aNumber => ('program'output << aNumber * aNumber << "%n").
+
+#symbol Program =>
+[
+    // first version
+    Scan::(1, 2, 3, 4, 5) run:PrintSecondPower.
+        
+    // second version
+    (ArrayEnumerator::(6, 7, 8, 9, 10))~foreach run: anItem => (PrintSecondPower eval:anItem).
+].

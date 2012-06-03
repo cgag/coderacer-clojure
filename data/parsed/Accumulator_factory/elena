@@ -1,0 +1,16 @@
+#define std'dictionary'*.
+#define sys'dynamics'*.
+
+#symbol NewAccumulator : aValue =
+    __group(aValue, aNumber => ((self~egroup @ 0) set &content:(aNumber + self))).
+
+#symbol Program =>
+[
+    #var x := NewAccumulator::1.
+
+    x eval:5.
+                                    
+    NewAccumulator::3.
+    
+    'program'Output << x eval:2.3r.
+].

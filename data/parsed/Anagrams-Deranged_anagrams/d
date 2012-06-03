@@ -1,0 +1,30 @@
+import std.stdio, std.file, std.string, std.algorithm,
+       std.typecons, std.range;
+
+auto findDeranged(in string[] words) /*pure nothrow*/ {
+    Tuple!(const string, const string)[] result;
+    foreach (i, w1; words)
+        foreach (w2; words[i+1 .. $])
+            if (!zip(w1, w2).canFind!q{ a[0] == a[1] }())
+                result ~= tuple(w1, w2);
+    return result;
+}
+
+void main() {
+    Appender!(string[])[30] wclasses;
+    foreach (word; std.algorithm.splitter(readText("unixdict.txt")))
+        wclasses[$ - word.length].put(word);
+    auto r = filter!q{ a.length }(map!q{ a.data }(wclasses[]));
+    writeln("Longest deranged anagrams:");
+    foreach (words; r) {
+        string[][const ubyte[]] anags; // assume input is ASCII
+        foreach (w; words)
+            anags[(cast(ubyte[])w).sort().release().idup] ~= w.idup;
+        const anas = anags.values.filter!q{ a.length > 1 }().array();
+        auto pairs = anas.map!findDeranged().filter!q{ a.length }();
+        if (!pairs.empty) {
+            writefln("  %s, %s", pairs.front[0].tupleof);
+            break;
+        }
+    }
+}
