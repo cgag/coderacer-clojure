@@ -1,0 +1,11 @@
+span.current {
+  text-decoration: underline;
+}
+
+span.miss {
+  color: red;
+}
+
+span.match {
+  color: green;
+}
