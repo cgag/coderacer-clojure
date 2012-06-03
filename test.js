@@ -165,6 +165,7 @@
           inputToken = "";
           updateCurrentCSS();
           $("#typing-area").val("");
+          e.preventDefault();
         }
         console.log("currentToken: " + currentToken);
         console.log("inputToken setMatch level: " + inputToken);

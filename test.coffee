@@ -3,7 +3,6 @@
  # translate input special characters to entities
  # get rid of hardcoding on token[0] (removed trailing \n)
  # toggle css when updating current token
- # find cities to lived in given whatever critera
 
 codeHtml = (json) ->
   pages = json["query"]["pages"]
@@ -146,6 +145,7 @@ jQuery ->
         inputToken = ""
         updateCurrentCSS()
         $("#typing-area").val("")
+        e.preventDefault()
       console.log("currentToken: " + currentToken)
       console.log("inputToken setMatch level: " + inputToken)
       console.log("tokens[currentToken].slice: " + tokens[currentToken].slice(0, inputToken.length))
