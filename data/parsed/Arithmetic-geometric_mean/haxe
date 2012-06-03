@@ -1,0 +1,14 @@
+class BasicIntegerArithmetic {
+    public static function main() {
+        var args = neko.Sys.args();
+        if (args.length < 2)
+            neko.Sys.exit(0);
+        var a = Std.int(args[0]);
+        var b = Std.int(args[1]);
+        trace("a+b = " + (a+b));
+        trace("a-b = " + (a-b));
+        trace("a*b = " + (a*b));
+        trace("a/b = " + (a/b));
+        trace("a%b = " + (a%b));
+    }
+}

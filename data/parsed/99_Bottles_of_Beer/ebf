@@ -1,0 +1,86 @@
+
+;; Macroes
+; create 100
+{init
+  :tmp
+  $tmp 10+(-^where 10+)
+  !tmp
+}
+
+; macro that prints 99-2
+{print_num
+  :what:div:1s:10s
+  %where(-$what+$div+)
+  $div(-^where+)
+  %div 10+
+  $what &divmod
+  $div(-)
+  $10s(|"0"(-))
+  $1s|"0"(-)
+  $what(-)
+  !10s!1s!div!what
+}
+
+; macro that prints the text between the numbers
+{do_iteration
+    :iter:zero:tmp
+    (-$iter+$zero+)
+    $zero(-^+)+
+    switch $iter-
+    (
+      $tmp|" of beer on the wall"(-)
+      $iter-
+      (-$zero-|"."(-)10+..(-))
+      $zero(-|", "(-))
+    )
+    $zero(-
+            |" of beer."(-)10+.(-)
+            $zero+
+            $not_first((-)$zero-
+                |"Go to the store and buy some more, 99 bottles of beer on the wall."(-)10+.(-))
+            $zero(-|"Take one down and pass it around, "(-))
+    )
+  !tmp!zero!iter
+}
+
+; divmod performs divide and modulus at the same time
+{divmod[->-[>+>>]>[+[-<+>]>+>>]<<<<<]*-3}
+
+;; global variables
+:not_first
+:round
+:number
+:copy
+:flag
+
+;; main program starts here
+$number &init
+while $number
+(
+  $round++
+  $not_first(-$round+)
+  while $round
+  (
+    $number(-$copy+$flag+)
+    $flag(-$number+)+
+    switch $copy
+    -(-
+      (+
+        $copy &print_num
+        $flag-
+        $copy(-)
+        |" bottles"(-)
+      ) $flag (-
+          |"1 bottle"(-)
+    )) $flag (-
+          |"No more bottles"(-)
+          $not_first+
+    )
+
+    $round &do_iteration
+    $round-
+  )
+  $not_first+
+  $number-
+)
+

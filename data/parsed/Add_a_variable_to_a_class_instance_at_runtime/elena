@@ -1,0 +1,25 @@
+#subject foo.
+
+#class FieldContainer
+{
+    #field theValue.
+    
+    #method foo'set : anObject
+    [
+        theValue := anObject.
+    ]
+    
+    #method foo'get = theValue.
+}
+
+#symbol Program =>
+[
+    #var anObject := 234.
+    
+    // adding a field
+    anObject := anObject~FieldContainer.
+    
+    anObject set &foo:"bar".
+    
+    'program'Output << anObject << ".foo=" << anObject foo.
+].

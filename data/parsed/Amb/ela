@@ -1,0 +1,7 @@
+let (Some x) = f ""
+    where f = 
+        amb ["the","that","a"] 
+        <| amb ["frog","elephant","thing"] 
+        <| amb ["walked","treaded","grows"]
+        <| amb ["slowly","quickly"] (\_ -> Some "")
+    in x

@@ -1,0 +1,33 @@
+function factors(num) {
+    var factors = new Array();
+    var sqrt = Math.floor(Math.sqrt(num)); 
+    for (var i = 1; i <= sqrt; i++) {
+        if (num % i == 0) {
+            factors.push(i);
+            if (num / i != i) 
+                factors.push(num / i);
+        }
+    }
+    factors.sort(function(a,b){return a-b});  // numeric sort
+    return factors;
+}
+
+function isPerfect(n) {
+    var sum = new Rational(0);
+    var fctrs = factors(n);
+    for (var i = 0; i < fctrs.length; i++) 
+        sum.add(new Rational(1, fctrs[i]));
+
+    // note, fctrs includes 1, so sum should be 2
+    return sum.toFloat() == 2.0;
+}
+
+// find perfect numbers less than 2^19
+for (var n = 2; n < Math.pow(2,19); n++)
+    if (isPerfect(n))
+        print("perfect: " + n);
+
+// test 5th perfect number
+var n = Math.pow(2,12) * (Math.pow(2,13) - 1);
+if (isPerfect(n))
+    print("perfect: " + n);

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="30">
+    <g id="all">
+        <rect width="100%" height="100%" fill="yellow"/>
+        <g style="font: 18 'Times New Roman', serif; 
+                  fill: black;
+                  stroke: white; stroke-width: 0.001; /* workaround for Batik oddity */ ">
+            <text x="0" y="20" textLength="95">Hello World!</text>
+            <text x="-100" y="20" textLength="95">Hello World!</text>
+            <animateMotion restart="whenNotActive" repeatCount="indefinite" dur="2s"
+                           begin="0s;all.click" end="all.click"
+                           from="0,0"   by="100,0"/>
+            <animateMotion restart="whenNotActive" repeatCount="indefinite" dur="2s"
+                           begin="all.click" end="all.click"
+                           from="100,0" by="-100,0"/>
+        </g>
+    </g>
+</svg>

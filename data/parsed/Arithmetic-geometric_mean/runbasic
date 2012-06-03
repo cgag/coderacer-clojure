@@ -1,0 +1,9 @@
+input "Enter 1st integer: "; integer1
+input "Enter 2nd integer: "; integer2
+ 
+print "The sum is:" ; integer1 + integer2
+print "The difference is:" ; integer1 - integer2
+print "The product is:" ; integer1 * integer2
+if integer2 <> 0 then print "The integer quotient is:" ; int( integer1 / integer2); " (rounds towards 0)" else print "Division by zero unallowed."
+print "The remainder is:" ; integer1 MOD integer2; " (sign matches integer1 operand)"
+print "The integer1 to power of the integer2 is:" ; integer1 ^ integer2

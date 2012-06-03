@@ -1,0 +1,90 @@
+-module(g24).
+-import(random, [uniform/1, seed/3]).
+-import(string, [strip/3]).
+-import(regexp, [match/2]).
+-import(lists, [member/2]).
+-compile(export_all).
+
+
+eval(S) ->
+    {ok, Scanned,_} = erl_scan:string(S),
+    {ok, Parsed} = erl_parse:parse_exprs(Scanned),
+    {value, Value, _} = erl_eval:exprs(Parsed, []),
+    {ok, Value}.
+
+gen_number() ->
+    [ uniform(X) || X <-[9,9,9,9]].
+
+main() ->
+    io:format("24 Game~n"),
+    {A1,A2,A3} = now(),
+    seed(A1, A2, A3),
+    play().
+
+play() ->
+    io:format("Generating 4 digits...~n"),
+    Digts = gen_number(),
+    io:format("Your digits\t~w~n", [Digts]),
+    read_eval(Digts).
+
+read_eval(D) ->
+    Exp = strip(io:get_line(standard_io, 'Your expression: '),
+                both, $\n),
+    case check_expr([X||X <- Exp,X /= 32], D, 1) of
+        {ok} ->
+            try eval(Exp ++ ".") of
+                {ok, V} ->
+                    if
+                        V == 24 ->
+                            {right, Exp};
+                        true  ->
+                            io:format("~w is not 24~n", [V]),
+                            read_eval(D)
+                    end
+            catch
+                _:_ ->
+                    io:format("bad expression~n"),
+                    read_eval(D)
+            end;
+        _  ->
+            io:format("bad expression~n"),
+            read_eval(D)
+    end.
+check_expr([H|L], D, Isop) ->
+    %% io:format("checking ~w in ~w~n", [H, D]),
+    case match([H], "[()]")  of
+        {match, _, _}->
+            check_expr(L, D, Isop);
+        _ ->
+            case Isop =:= 1 of
+            %% now we need a digit
+                true ->
+                    case member(H - 48, D) of
+                        true ->
+                            case match([H], "[0-9]") of
+                                {match, _,_} ->
+                                    check_expr(L, D--[H - 48], 0);
+                                _ ->
+                                    %% io:format("error1 ~w~n", [H]),
+                                    {error}
+                             end;
+                        false ->
+                            %% io:format("error2 ~w~n", [H]),
+                            {error}
+                    end;
+            %% now we need a Op
+                false ->
+                    case match([H], "[*+-/]") of
+                        {match, _,_} ->
+                            check_expr(L, D , 1);
+                        _ ->
+                            %% io:format("error3 ~w~n", [H]),
+                         {error}
+                    end
+            end
+    end;
+
+check_expr([], [], _) ->
+    {ok};
+check_expr([], _L, _) ->
+    {error}.

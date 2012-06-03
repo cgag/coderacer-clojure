@@ -1,0 +1,32 @@
+import std.stdio, std.string, std.algorithm, std.array;
+
+void main() {
+    immutable T =
+"Given$a$txt$file$of$many$lines,$where$fields$within$a$line$
+are$delineated$by$a$single$'dollar'$character,$write$a$program
+that$aligns$each$column$of$fields$by$ensuring$that$words$in$each$
+column$are$separated$by$at$least$one$space.
+Further,$allow$for$each$word$in$a$column$to$be$either$left$
+justified,$right$justified,$or$center$justified$within$its$column.";
+
+    const P = array(map!q{ a.chomp("$").split("$") }(splitLines(T)));
+
+    int[int] maxWidths;
+    foreach (line; P)
+        foreach (i, word; line)
+            maxWidths[i] = max(maxWidths.get(i, 0), word.length);
+
+    foreach (i, justify; [&leftJustify!string, &center!string,
+                          &rightJustify!string]) {
+        writeln(["Left", "Center", "Right"][i],
+                " column-aligned output:\n");
+        foreach (line; P) {
+            foreach (j, word; line)
+                //write(word.justify(maxWidths[j]), " ");
+                write(justify(word, maxWidths[j]), " ");
+            writeln();
+        }
+
+        writeln("- ".replicate(52));
+    }
+}

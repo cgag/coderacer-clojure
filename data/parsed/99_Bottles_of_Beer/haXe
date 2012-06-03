@@ -1,0 +1,33 @@
+class RosettaDemo
+{
+    static public function main()
+    {
+        singBottlesOfBeer(100);
+    }
+
+    static function singBottlesOfBeer(bottles : Int)
+    {
+        var plural : String = 's';
+
+        while (bottles >= 1)
+        {
+            neko.Lib.print(bottles + " bottle" + plural + " of beer on the wall,\n");
+            neko.Lib.print(bottles + " bottle" + plural + " of beer!\n");
+            neko.Lib.print("Take one down, pass it around,\n");
+            if (bottles - 1 == 1)
+            {
+                plural = '';
+            }
+
+            if (bottles > 1)
+            {
+                neko.Lib.print(bottles-1 + " bottle" + plural + " of beer on the wall!\n\n");
+            }
+            else
+            {
+                neko.Lib.print("No more bottles of beer on the wall!\n");
+            }
+            bottles--;
+        }
+    }
+}

@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+
+typedef struct { char *key, *word; } wtuple;
+
+int deranged(char *s1, char *s2)
+{
+	while (*s1 != '\0')
+		if (*(s1++) == *(s2++)) return 0;
+
+	return 1;
+}
+
+int cmp_tuple(const void *a, const void *b)
+{
+	const wtuple *x = a, *y = b;
+	int l1 = strlen(x->key), l2 = strlen(y->key);
+	return l1 > l2 ? -1 : l1 < l2 ? 1 :strcmp(x->key, y->key);
+}
+
+/* sort letters in a string */
+void char_sort(char *ptr, int len)
+{
+	int i, j;
+	char tmp;
+	/* bubble sort, O(n) shmoen */
+	for (i = 0; i < len; i++)
+		for (j = i + 1; j < len; j++)
+			if (ptr[i] > ptr[j]) {
+				tmp = ptr[i]; ptr[i] = ptr[j]; ptr[j] = tmp;
+			}
+}
+
+int main()
+{
+	int i, j, k, n_words = 0;
+	char *words, *keys;
+	struct stat st;
+	wtuple *t;
+
+	int fd = open("unixdict.txt", O_RDONLY);
+	fstat(fd, &st);
+
+	words = malloc(st.st_size);
+	read(fd, words, st.st_size);
+	close(fd);
+
+	keys = malloc(st.st_size);
+	memcpy(keys, words, st.st_size);
+
+	/* count words, change all new line to null, and sort each key */
+	for (i = j = 0; i < st.st_size; i++) {
+		if (words[i] != '\n') continue;
+		n_words ++;
+		words[i] = keys[i] = '\0';
+		char_sort(keys + j, i - j);
+		j = i;
+	}
+
+	/* make key-word tuples */
+	t = malloc(sizeof(wtuple) * n_words);
+	for (j = k = i = 0; i < st.st_size; i++) {
+		if (words[i] != '\0') continue;
+		t[j].key  = keys  + k;
+		t[j].word = words + k;
+		k = ++i;
+		j++;
+	}
+
+	/* sort t by key length / key order */
+	qsort(t, n_words, sizeof(wtuple), cmp_tuple);
+	for (i = 0, j = 0; j < n_words; j++) {
+		if (strcmp(t[i].key, t[j].key)) i = j;
+		else if (deranged(t[i].word, t[j].word)) break;
+	}
+
+	printf("longest derangement: %s %s\n", t[i].word, t[j].word);
+	return 0;
+}

@@ -1,0 +1,59 @@
+#define std'dictionary'*.
+#define std'patterns'*.
+#define std'basic'*.
+
+#subject a_function, m, n.
+
+// --- Ackermann function ---
+
+#symbol Ackermann =
+{
+    a_function &m:anM &n:anN
+    [
+        #if anM
+            ifequal:0 [ ^ anN + 1. ]
+            | greater:0 ?
+            [
+                #if anN
+                    ifequal:0 [ ^ self a_function &m:(anM - 1) &n:1. ]
+                    | greater:0 ? [ ^ self a_function &m:(anM - 1) &n:(self a_function &m:anM &n:(anN - 1)). ].
+            ].
+        
+        control fail.
+    ]
+}.
+
+// --- Arguments ---
+
+#class(signature:(a_function, m, n)) AckermanValue
+{
+    #field(arg:m)theM.
+    
+    #field(arg:n)theN.
+    
+    #method m'get = Int64Value::theM.
+    
+    #method n'get = Int64Value::theN.
+    
+    #method numeric'save : aWriter = aWriter write &:(Ackermann a_function:self).
+    
+    #method literal_writer'save : aWriter
+    [
+        aWriter << "A(" << theM << "," << theN << ")=" << Int64Value::self.
+
+        ^ aWriter.
+    ]
+}
+
+#symbol Program =>
+[
+    loop &&for:0 &to:3 run: anM =>
+    [
+        loop &&for:0 &to:5 run: anN =>
+        [
+            'program'output << { &a_function &m:anM &n:anN } << "%n".
+        ].
+    ].
+    
+    'program'Input get.
+].

@@ -1,0 +1,26 @@
+import std.stdio;
+
+class Foo {
+    // abstract methods can have an implementation for
+    // use in super calls
+    abstract void foo() {
+        writeln("Test");
+    }
+}
+
+interface Bar {
+    // interface methods are implicitly abstract and cannot
+    // provide default implementations
+    void bar();
+}
+
+class Baz : Foo, Bar { // super class must come first
+    override void foo() {
+        writefln("Meep");
+        super.foo();
+    }
+
+    void bar() {}
+}
+
+void main() {}

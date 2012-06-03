@@ -1,0 +1,2 @@
+open System
+let plus = (fun (a:string) (b:string) -> Console.WriteLine(int(a)+int(b))) (Console.ReadLine()) (Console.ReadLine());;

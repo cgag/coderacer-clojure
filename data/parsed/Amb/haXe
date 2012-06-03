@@ -1,0 +1,72 @@
+class RosettaDemo
+{
+    static var SetA : Array<String> = ['the', 'that', 'a'];
+    static var SetB : Array<String> = ['frog', 'elephant', 'thing'];
+    static var SetC : Array<String> = ['walked', 'treaded', 'grows'];
+    static var SetD : Array<String> = ['slowly', 'quickly'];
+
+    static public function main()
+    {
+        neko.Lib.print(AmbParse([ SetA, SetB, SetC, SetD ]).toString());
+    }
+
+    static function AmbParse(Sets : Array<Array<String>>)
+    {
+        var AmbData : Dynamic = Amb(Sets);
+
+        for (data in 0...AmbData.length)
+        {
+            var tmpData : String = parseIt(AmbData[data]);
+            var tmpArray : Array<String> = tmpData.split(' ');
+            tmpArray.pop();
+            if (tmpArray.length == Sets.length)
+            {
+                return tmpData;
+            }
+        }
+
+        return '';
+    }
+
+    static function Amb(?StartingWith : String = '', Sets : Array<Array<String>>)
+    {
+        if (Sets.length == 0 || Sets[0].length == 0) { return; }
+
+        var match : Dynamic = [];
+        for (Reference in 0...Sets[0].length)
+        {
+            if (StartingWith == '' || StartingWith == Sets[0][Reference].charAt(0))
+            {
+                if (Std.is(Amb(Sets[0][Reference].charAt(Sets[0][Reference].length-1), Sets.slice(1)), Array))
+                {
+                    match.push([ Sets[0][Reference], Amb(Sets[0][Reference].charAt(Sets[0][Reference].length-1), Sets.slice(1))]);
+                }
+                else
+                {
+                    match.push([ Sets[0][Reference] ]);
+                }
+            }
+        }
+        return match;
+    }
+
+    static function parseIt(data : Dynamic)
+    {
+        var retData : String = '';
+        if (Std.is(data, Array))
+        {
+            for (elements in 0...data.length)
+            {
+                if (Std.is(data[elements], Array))
+                {
+                    retData = retData + parseIt(data[elements]);
+                }
+                else
+                {
+                    retData = retData + data[elements] + ' ';
+                }
+            }
+        }
+        return retData;
+    }
+}

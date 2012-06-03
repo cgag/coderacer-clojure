@@ -1,0 +1,8 @@
+dim bottles as Integer = 99
+While bottles > 0
+stdout.writeline(str(bottles) + " bottles of beer on the wall")
+stdout.writeline(str(bottles) + " bottles of beer")
+stdout.writeline("Take one down, pass it around")
+bottles = bottles - 1
+stdout.writeline(str(bottles) + " bottles of beer on the wall")
+Wend

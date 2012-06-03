@@ -1,0 +1,4 @@
+
+% Given struct "test"
+test.b=1;
+test = setfield (test, "c", 3);

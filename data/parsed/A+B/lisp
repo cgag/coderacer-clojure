@@ -1,0 +1,1 @@
+(format t (write-to-string (+ (read) (read))))
