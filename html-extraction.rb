@@ -30,6 +30,7 @@ samples = [s, s2]
 
 samples.each do |sample|
   code = sample.scan(/&lt;lang.*?>(.*)&lt;\/lang/m)[0][0]
+  puts code.inspect
   code.split("\n").each do |token|
     puts token
   end
