@@ -1,0 +1,384 @@
+Could not find metadata thneed:thneed:1.0.0-SNAPSHOT/maven-metadata.xml in central (http://repo1.maven.org/maven2)
+Retrieving thneed/thneed/1.0.0-SNAPSHOT/maven-metadata.xml (1k)
+    from http://clojars.org/repo/
+Retrieving com/ashafa/clutch/0.4.0-SNAPSHOT/maven-metadata.xml (1k)
+    from http://clojars.org/repo/
+Could not find metadata com.ashafa:clutch:0.4.0-SNAPSHOT/maven-metadata.xml in central (http://repo1.maven.org/maven2)
+Retrieving clj-http/clj-http/0.4.1-SNAPSHOT/maven-metadata.xml (1k)
+    from http://clojars.org/repo/
+Could not find metadata clj-http:clj-http:0.4.1-SNAPSHOT/maven-metadata.xml in central (http://repo1.maven.org/maven2)
+Compiling rosettacode.core
+Compilation succeeded.
+lang: clojure.lang.LazySeq@9956220c
+new-url: http://rosettacode.org
+({:tag :html, :attrs {:class client-nojs, :dir ltr, :lang en}, :content (
+ {:tag :head, :attrs nil, :content (
+ {:tag :title, :attrs nil, :content (Rosetta Code)} 
+ {:tag :meta, :attrs {:charset UTF-8}, :content nil} 
+ {:tag :meta, :attrs {:content MediaWiki 1.18.0, :name generator}, :content nil} 
+ {:tag :link, :attrs {:href /favicon.ico, :rel shortcut icon}, :content nil} 
+ {:tag :link, :attrs {:title Rosetta Code (en), :href /mw/opensearch_desc.php, :type application/opensearchdescription+xml, :rel search}, :content nil} 
+ {:tag :link, :attrs {:href http://rosettacode.org/mw/api.php?action=rsd, :type application/rsd+xml, :rel EditURI}, :content nil} 
+ {:tag :link, :attrs {:href http://www.gnu.org/licenses/fdl-1.2.html, :rel copyright}, :content nil} 
+ {:tag :link, :attrs {:href /mw/index.php?title=Special:RecentChanges&feed=atom, :title Rosetta Code Atom feed, :type application/atom+xml, :rel alternate}, :content nil} 
+ {:tag :link, :attrs {:href /mw/load.php?debug=false&lang=en&modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&only=styles&skin=vector&*, :rel stylesheet}, :content nil} 
+ {:tag :meta, :attrs {:content , :name ResourceLoaderDynamicStyles}, :content nil} 
+ {:tag :link, :attrs {:href /mw/load.php?debug=false&lang=en&modules=site&only=styles&skin=vector&*, :rel stylesheet}, :content nil} 
+ {:tag :style, :attrs nil, :content (a:lang(ar),a:lang(ckb),a:lang(fa),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}a.new,#quickbar a.new{color:#ba0000}
+
+/* cache key: rosettacode:resourceloader:filter:minify-css:4:c88e2bcd56513749bec09a7e29cb3ffa */)} 
+ {:tag :script, :attrs {:src /mw/load.php?debug=false&lang=en&modules=startup&only=scripts&skin=vector&*}, :content nil} 
+ {:tag :script, :attrs nil, :content (if(window.mw){
+	mw.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Rosetta_Code", "wgTitle": "Rosetta Code", "wgCurRevisionId": 116338, "wgArticleId": 1, "wgIsArticle": true, "wgAction": "view", "wgUserName": null, "wgUserGroups": ["*"], "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": ["sysop"], "wgRestrictionMove": ["sysop"], "wgIsMainPage": true, "sfgRemoveText": "Remove", "sfgAutocompleteOnAllChars": false, "sfgAutocompleteValues": {}, "sfgShowOnSelect": {}, "sfgFormErrorsHeader": "There were errors with your form input; see below", "sfgBlankErrorStr": "cannot be blank", "sfgBadURLErrorStr": "must have the correct URL format, starting with \"http\"", "sfgBadEmailErrorStr": "must have a valid email address format", "sfgBadNumberErrorStr": "must be a valid number", "sfgBadDateErrorStr": "must be a valid date", "sfgAnonEditWarning": "Warning: You are not logged in. Your IP address will be recorded in this page\'s edit history."});
+}
+)} {:tag :script, :attrs nil, :content (if(window.mw){
+	mw.loader.load(["mediawiki.page.startup"]);
+}
+)} 
+		 {:tag :link, :attrs {:href /mw/index.php?title=Special:ExportRDF/Rosetta_Code&xmlmime=rdf, :title Rosetta Code, :type application/rdf+xml, :rel alternate}, :content nil} 
+ {:type :comment, :data [if lt IE 7]><style type="text/css">body{behavior:url("/mw/skins/vector/csshover.min.htc")}</style><![endif]})} 
+ {:tag :body, :attrs {:class mediawiki ltr sitedir-ltr ns-0 ns-subject page-Rosetta_Code action-view skin-vector}, :content (
+		 {:tag :div, :attrs {:class noprint, :id mw-page-base}, :content nil} 
+		 {:tag :div, :attrs {:class noprint, :id mw-head-base}, :content nil} 
+		 {:type :comment, :data  content } 
+		 {:tag :div, :attrs {:id content}, :content (
+			 {:tag :a, :attrs {:id top}, :content nil} 
+			 {:tag :div, :attrs {:style display:none;, :id mw-js-message}, :content nil} 
+						 {:type :comment, :data  sitenotice } 
+			 {:tag :div, :attrs {:id siteNotice}, :content ({:tag :div, :attrs {:dir ltr, :lang en, :id localNotice}, :content ({:tag :center, :attrs nil, :content (
+ {:tag :table, :attrs {:style text-align: center; background-color: lightyellow; clear: both;, :class messagebox}, :content (
+ {:tag :tr, :attrs nil, :content (
+ {:tag :td, :attrs nil, :content ( Policy change. Edit privileges will now require email addresses to be confirmed.  {:tag :b, :attrs nil, :content ({:tag :a, :attrs {:title Rosetta Code:Email Confirmation, :href /wiki/Rosetta_Code:Email_Confirmation}, :content ((Details))})}  -- {:tag :a, :attrs {:title User:Short Circuit, :href /wiki/User:Short_Circuit}, :content (Michael Mol)}  14:53, 14 March 2012 (UTC)
+)})})})} 
+)})} 
+			 {:type :comment, :data  /sitenotice } 
+						 {:type :comment, :data  firstHeading } 
+			 {:tag :h1, :attrs {:class firstHeading, :id firstHeading}, :content (Rosetta Code)} 
+			 {:type :comment, :data  /firstHeading } 
+			 {:type :comment, :data  bodyContent } 
+			 {:tag :div, :attrs {:id bodyContent}, :content (
+								 {:type :comment, :data  tagline } 
+				 {:tag :div, :attrs {:id siteSub}, :content (From Rosetta Code)} 
+				 {:type :comment, :data  /tagline } 
+								 {:type :comment, :data  subtitle } 
+				 {:tag :div, :attrs {:id contentSub}, :content nil} 
+				 {:type :comment, :data  /subtitle } 
+																 {:type :comment, :data  jumpto } 
+				 {:tag :div, :attrs {:id jump-to-nav}, :content (
+					Jump to:  {:tag :a, :attrs {:href #mw-head}, :content (navigation)} ,
+					 {:tag :a, :attrs {:href #p-search}, :content (search)} 
+				)} 
+				 {:type :comment, :data  /jumpto } 
+								 {:type :comment, :data  bodycontent } 
+				 {:tag :div, :attrs {:class mw-content-ltr, :dir ltr, :lang en}, :content ({:tag :p, :attrs nil, :content (Rosetta Code is a  {:tag :a, :attrs {:title wp:Chrestomathy, :class extiw, :href http://en.wikipedia.org/wiki/Chrestomathy}, :content (programming chrestomathy)}  site. The idea is to present solutions to the same task in as many different languages as possible, to demonstrate how languages are similar and different, and to aid a person with a grounding in one approach to a problem in learning another.  Rosetta Code currently has 594  {:tag :a, :attrs {:title Category:Solutions by Programming Task, :href /wiki/Category:Solutions_by_Programming_Task}, :content (tasks)} , 92  {:tag :a, :attrs {:title Category:Draft Programming Tasks, :href /wiki/Category:Draft_Programming_Tasks}, :content (draft tasks)} , and is aware of 458  {:tag :a, :attrs {:title Category:Programming Languages, :href /wiki/Category:Programming_Languages}, :content (languages)} , though we do not (and cannot) have solutions to every task in every language.
+)} 
+ {:tag :h2, :attrs nil, :content (  {:tag :span, :attrs {:id Places_to_start, :class mw-headline}, :content (Places to start)})} 
+ {:tag :table, :attrs {:style width: 100%;}, :content (
+ {:tag :tr, :attrs nil, :content (
+ {:tag :td, :attrs nil, :content (  {:tag :div, :attrs {:style border:solid 1px #0000ff;background: #ccccff}, :content (
+ {:tag :dl, :attrs nil, :content ({:tag :dd, :attrs nil, :content ({:tag :b, :attrs nil, :content (Recently-Updated Tasks:)} 
+)})} 
+ {:tag :table, :attrs {:id querytable1, :width 100%, :class smwtable}, :content (
+ {:tag :tr, :attrs nil, :content ({:tag :th, :attrs nil, :content nil})} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Singly-linked list/Element insertion, :href /wiki/Singly-linked_list/Element_insertion}, :content (Singly-linked list/Element insertion)})} 
+)} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Singly-linked list/Element definition, :href /wiki/Singly-linked_list/Element_definition}, :content (Singly-linked list/Element definition)})} 
+)} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Zig-zag matrix, :href /wiki/Zig-zag_matrix}, :content (Zig-zag matrix)})} 
+)} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Count occurrences of a substring, :href /wiki/Count_occurrences_of_a_substring}, :content (Count occurrences of a substring)})} 
+)} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Sum and product of an array, :href /wiki/Sum_and_product_of_an_array}, :content (Sum and product of an array)})} 
+)} 	 {:tag :tr, :attrs {:class smwfooter}, :content ({:tag :td, :attrs {:colspan 1, :class sortbottom}, :content (  {:tag :a, :attrs {:title Special:Ask/-5B-5BIs-20task::true-5D-5D/mainlabel=/order=DESC/sort= MDAT, :href /wiki/Special:Ask/-5B-5BIs-20task::true-5D-5D/mainlabel%3D/order%3DDESC/sort%3D_MDAT}, :content (more...)})})} 
+)} 
+)} 
+)} 
+ {:tag :td, :attrs nil, :content (  {:tag :div, :attrs {:style border:solid 1px #009900;background:#ccffcc;}, :content (
+ {:tag :dl, :attrs nil, :content ({:tag :dd, :attrs nil, :content ({:tag :b, :attrs nil, :content (Ways to Contribute:)} 
+)})} 
+ {:tag :table, :attrs {:id querytable2, :width 100%, :class smwtable}, :content (
+ {:tag :tr, :attrs nil, :content ({:tag :th, :attrs nil, :content nil})} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Rosetta Code:Village Pump/Suggest a programming task, :href /wiki/Rosetta_Code:Village_Pump/Suggest_a_programming_task}, :content (Village Pump/Suggest a programming task)})} 
+)} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Rosetta Code:Add a Language, :href /wiki/Rosetta_Code:Add_a_Language}, :content (Add a Language)})} 
+)} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Rosetta Code:Village Pump/Suggest a language, :href /wiki/Rosetta_Code:Village_Pump/Suggest_a_language}, :content (Village Pump/Suggest a language)})} 
+)} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Rosetta Code:Add a Task, :href /wiki/Rosetta_Code:Add_a_Task}, :content (Add a Task)})} 
+)} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Category:Examples needing attention, :href /wiki/Category:Examples_needing_attention}, :content (Examples needing attention)})} 
+)} 	 {:tag :tr, :attrs {:class smwfooter}, :content ({:tag :td, :attrs {:colspan 1, :class sortbottom}, :content (  {:tag :a, :attrs {:title Special:Ask/-5B-5Bis-20contribution-20page::true-5D-5D/mainlabel=/order=DESC/sort= MDAT, :href /wiki/Special:Ask/-5B-5Bis-20contribution-20page::true-5D-5D/mainlabel%3D/order%3DDESC/sort%3D_MDAT}, :content (more...)})})} 
+)} 
+)} 
+)} 
+ {:tag :td, :attrs nil, :content (  {:tag :div, :attrs {:style border:solid 1px #999900;background:#ffffcc}, :content (
+ {:tag :dl, :attrs nil, :content ({:tag :dd, :attrs nil, :content ({:tag :b, :attrs nil, :content (Recent Discussions:)} 
+)})} 
+ {:tag :table, :attrs {:id querytable3, :width 100%, :class smwtable}, :content (
+ {:tag :tr, :attrs nil, :content ({:tag :th, :attrs nil, :content nil})} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Rosetta Code:Village Pump/Arrays, :href /wiki/Rosetta_Code:Village_Pump/Arrays}, :content (Village Pump/Arrays)})} 
+)} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Rosetta Code:Village Pump/Dialects, :href /wiki/Rosetta_Code:Village_Pump/Dialects}, :content (Village Pump/Dialects)})} 
+)} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Rosetta Code:Village Pump/The server refuses the connection, :href /wiki/Rosetta_Code:Village_Pump/The_server_refuses_the_connection}, :content (Village Pump/The server refuses the connection)})} 
+)} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Rosetta Code:Village Pump/hopl.murdoch.edu.au Unavailable, :href /wiki/Rosetta_Code:Village_Pump/hopl.murdoch.edu.au_Unavailable}, :content (Village Pump/hopl.murdoch.edu.au Unavailable)})} 
+)} 
+ {:tag :tr, :attrs nil, :content (
+	 {:tag :td, :attrs nil, :content ({:tag :a, :attrs {:title Rosetta Code:Village Pump/Download Perl Code, :href /wiki/Rosetta_Code:Village_Pump/Download_Perl_Code}, :content (Village Pump/Download Perl Code)})} 
+)} 	 {:tag :tr, :attrs {:class smwfooter}, :content ({:tag :td, :attrs {:colspan 1, :class sortbottom}, :content (  {:tag :a, :attrs {:title Special:Ask/-5B-5BIs-20village-20pump-20topic::true-5D-5D/mainlabel=/order=DESC/sort= MDAT, :href /wiki/Special:Ask/-5B-5BIs-20village-20pump-20topic::true-5D-5D/mainlabel%3D/order%3DDESC/sort%3D_MDAT}, :content (more...)})})} 
+)} 
+)} 
+)})})} 
+
+ {:type :comment, :data  
+NewPP limit report
+Preprocessor node count: 48/1000000
+Post-expand include size: 5162/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 3/100
+} 
+
+ {:type :comment, :data  Saved in parser cache with key rosettacode:pcache:idhash:1-0!*!0!*!*!*!* and timestamp 20120612124942 } 
+)} 				 {:type :comment, :data  /bodycontent } 
+								 {:type :comment, :data  printfooter } 
+				 {:tag :div, :attrs {:class printfooter}, :content (
+				Retrieved from " {:tag :a, :attrs {:href http://rosettacode.org/mw/index.php?title=Rosetta_Code&oldid=116338}, :content (http://rosettacode.org/mw/index.php?title=Rosetta_Code&oldid=116338)} "				)} 
+				 {:type :comment, :data  /printfooter } 
+												 {:type :comment, :data  catlinks } 
+				 {:tag :div, :attrs {:class catlinks catlinks-allhidden, :id catlinks}, :content nil} 				 {:type :comment, :data  /catlinks } 
+												 {:tag :div, :attrs {:class visualClear}, :content nil} 
+				 {:type :comment, :data  debughtml } 
+								 {:type :comment, :data  /debughtml } 
+			)} 
+			 {:type :comment, :data  /bodyContent } 
+		)} 
+		 {:type :comment, :data  /content } 
+		 {:type :comment, :data  header } 
+		 {:tag :div, :attrs {:class noprint, :id mw-head}, :content (
+			
+ {:type :comment, :data  0 } 
+ {:tag :div, :attrs {:class , :id p-personal}, :content (
+	 {:tag :h5, :attrs nil, :content (Personal tools)} 
+	 {:tag :ul, :attrs nil, :content (
+		 {:tag :li, :attrs {:id pt-login}, :content ({:tag :a, :attrs {:accesskey o, :title You are encouraged to log in; however, it is not mandatory [o], :href /mw/index.php?title=Special:UserLogin&returnto=Rosetta_Code}, :content (Log in / create account)})} 
+	)} 
+)} 
+
+ {:type :comment, :data  /0 } 
+			 {:tag :div, :attrs {:id left-navigation}, :content (
+				
+ {:type :comment, :data  0 } 
+ {:tag :div, :attrs {:class vectorTabs, :id p-namespaces}, :content (
+	 {:tag :h5, :attrs nil, :content (Namespaces)} 
+	 {:tag :ul, :attrs nil, :content (
+					 {:tag :li, :attrs {:class selected, :id ca-nstab-main}, :content ({:tag :span, :attrs nil, :content ({:tag :a, :attrs {:accesskey c, :title View the content page [c], :href /wiki/Rosetta_Code}, :content (Page)})})} 
+					 {:tag :li, :attrs {:id ca-talk}, :content ({:tag :span, :attrs nil, :content ({:tag :a, :attrs {:accesskey t, :title Discussion about the content page [t], :href /wiki/Talk:Rosetta_Code}, :content (Discussion)})})} 
+			)} 
+)} 
+
+ {:type :comment, :data  /0 } 
+
+ {:type :comment, :data  1 } 
+ {:tag :div, :attrs {:class vectorMenu emptyPortlet, :id p-variants}, :content (
+		 {:tag :h5, :attrs nil, :content ({:tag :span, :attrs nil, :content (Variants)} {:tag :a, :attrs {:href #}, :content nil})} 
+	 {:tag :div, :attrs {:class menu}, :content (
+		 {:tag :ul, :attrs nil, :content (
+					)} 
+	)} 
+)} 
+
+ {:type :comment, :data  /1 } 
+			)} 
+			 {:tag :div, :attrs {:id right-navigation}, :content (
+				
+ {:type :comment, :data  0 } 
+ {:tag :div, :attrs {:class vectorTabs, :id p-views}, :content (
+	 {:tag :h5, :attrs nil, :content (Views)} 
+	 {:tag :ul, :attrs nil, :content (
+					 {:tag :li, :attrs {:class selected, :id ca-view}, :content ({:tag :span, :attrs nil, :content ({:tag :a, :attrs {:href /wiki/Rosetta_Code}, :content (Read)})})} 
+					 {:tag :li, :attrs {:id ca-viewsource}, :content ({:tag :span, :attrs nil, :content ({:tag :a, :attrs {:accesskey e, :title This page is protected.
+You can view its source [e], :href /mw/index.php?title=Rosetta_Code&action=edit}, :content (View source)})})} 
+					 {:tag :li, :attrs {:class collapsible, :id ca-history}, :content ({:tag :span, :attrs nil, :content ({:tag :a, :attrs {:accesskey h, :title Past revisions of this page [h], :href /mw/index.php?title=Rosetta_Code&action=history}, :content (View history)})})} 
+			)} 
+)} 
+
+ {:type :comment, :data  /0 } 
+
+ {:type :comment, :data  1 } 
+ {:tag :div, :attrs {:class vectorMenu emptyPortlet, :id p-cactions}, :content (
+	 {:tag :h5, :attrs nil, :content ({:tag :span, :attrs nil, :content (Actions)} {:tag :a, :attrs {:href #}, :content nil})} 
+	 {:tag :div, :attrs {:class menu}, :content (
+		 {:tag :ul, :attrs nil, :content (
+					)} 
+	)} 
+)} 
+
+ {:type :comment, :data  /1 } 
+
+ {:type :comment, :data  2 } 
+ {:tag :div, :attrs {:id p-search}, :content (
+	 {:tag :h5, :attrs nil, :content ({:tag :label, :attrs {:for searchInput}, :content (Search)})} 
+	 {:tag :form, :attrs {:id searchform, :action /mw/index.php}, :content (
+		 {:tag :input, :attrs {:value Special:Search, :name title, :type hidden}, :content nil} 
+				 {:tag :input, :attrs {:id searchInput, :accesskey f, :title Search Rosetta Code [f], :name search, :type search}, :content nil} 		 {:tag :input, :attrs {:class searchButton, :id searchGoButton, :title Go to a page with this exact name if exists, :value Go, :name go, :type submit}, :content nil} 		 {:tag :input, :attrs {:class searchButton, :id mw-searchButton, :title Search the pages for this text, :value Search, :name fulltext, :type submit}, :content nil} 			)} 
+)} 
+
+ {:type :comment, :data  /2 } 
+			)} 
+		)} 
+		 {:type :comment, :data  /header } 
+		 {:type :comment, :data  panel } 
+			 {:tag :div, :attrs {:class noprint, :id mw-panel}, :content (
+				 {:type :comment, :data  logo } 
+					 {:tag :div, :attrs {:id p-logo}, :content ({:tag :a, :attrs {:title Visit the main page, :href /wiki/Rosetta_Code, :style background-image: url(/mw/title.png);}, :content nil})} 
+				 {:type :comment, :data  /logo } 
+				
+ {:type :comment, :data  Community/News } 
+ {:tag :div, :attrs {:id p-Community.2FNews, :class portal}, :content (
+	 {:tag :h5, :attrs nil, :content (Community/News)} 
+	 {:tag :div, :attrs {:class body}, :content (
+		 {:tag :ul, :attrs nil, :content (
+			 {:tag :li, :attrs {:id n-Twitter}, :content ({:tag :a, :attrs {:rel nofollow, :href http://twitter.com/rosettacode}, :content (Twitter)})} 
+			 {:tag :li, :attrs {:id n-Chat.2FIRC}, :content ({:tag :a, :attrs {:href /wiki/Special:WebChat}, :content (Chat/IRC)})} 
+			 {:tag :li, :attrs {:id n-Planet}, :content ({:tag :a, :attrs {:rel nofollow, :href http://rosettacode.org/planet}, :content (Planet)})} 
+			 {:tag :li, :attrs {:id n-The-Village-Pump}, :content ({:tag :a, :attrs {:href /wiki/Rosetta_Code:Village_Pump}, :content (The Village Pump)})} 
+			 {:tag :li, :attrs {:id n-Finances}, :content ({:tag :a, :attrs {:href /wiki/Rosetta_Code:Finances}, :content (Finances)})} 
+		)} 
+	)} 
+)} 
+
+ {:type :comment, :data  /Community/News } 
+
+ {:type :comment, :data  Browse } 
+ {:tag :div, :attrs {:id p-Browse, :class portal}, :content (
+	 {:tag :h5, :attrs nil, :content (Browse wiki)} 
+	 {:tag :div, :attrs {:class body}, :content (
+		 {:tag :ul, :attrs nil, :content (
+			 {:tag :li, :attrs {:id n-Languages}, :content ({:tag :a, :attrs {:href /wiki/Category:Programming_Languages}, :content (Languages)})} 
+			 {:tag :li, :attrs {:id n-Tasks}, :content ({:tag :a, :attrs {:href /wiki/Category:Programming_Tasks}, :content (Tasks)})} 
+			 {:tag :li, :attrs {:id n-recentchanges}, :content ({:tag :a, :attrs {:accesskey r, :title A list of recent changes in the wiki [r], :href /wiki/Special:RecentChanges}, :content (Recent changes)})} 
+			 {:tag :li, :attrs {:id n-Similar-sites}, :content ({:tag :a, :attrs {:href /wiki/Help:Similar_Sites}, :content (Similar sites)})} 
+			 {:tag :li, :attrs {:id n-randompage}, :content ({:tag :a, :attrs {:accesskey x, :title Load a random page [x], :href /wiki/Special:Random}, :content (Random page)})} 
+		)} 
+	)} 
+)} 
+
+ {:type :comment, :data  /Browse } 
+
+ {:type :comment, :data  Misc } 
+ {:tag :div, :attrs {:id p-Misc, :class portal}, :content (
+	 {:tag :h5, :attrs nil, :content (Misc)} 
+	 {:tag :div, :attrs {:class body}, :content (
+		 {:type :comment, :data  Place this tag where you want the +1 button to render } 
+ {:tag :g:plusone, :attrs nil, :content nil} 
+
+ {:type :comment, :data  Place this render call where appropriate } 
+ {:tag :script, :attrs {:type text/javascript}, :content (
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+)} 
+ {:tag :a, :attrs {:data-hashtags rosettacode, :data-size large, :data-lang en, :class twitter-share-button, :href https://twitter.com/share}, :content (Tweet)} 
+ {:tag :script, :attrs nil, :content (!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");)} 
+ {:tag :script, :attrs {:src http://www.stumbleupon.com/hostedbadge.php?s=2}, :content nil} 	)} 
+)} 
+
+ {:type :comment, :data  /Misc } 
+
+ {:type :comment, :data  SEARCH } 
+
+ {:type :comment, :data  /SEARCH } 
+
+ {:type :comment, :data  TOOLBOX } 
+ {:tag :div, :attrs {:id p-tb, :class portal}, :content (
+	 {:tag :h5, :attrs nil, :content (Toolbox)} 
+	 {:tag :div, :attrs {:class body}, :content (
+		 {:tag :ul, :attrs nil, :content (
+			 {:tag :li, :attrs {:id t-whatlinkshere}, :content ({:tag :a, :attrs {:accesskey j, :title A list of all wiki pages that link here [j], :href /wiki/Special:WhatLinksHere/Rosetta_Code}, :content (What links here)})} 
+			 {:tag :li, :attrs {:id t-recentchangeslinked}, :content ({:tag :a, :attrs {:accesskey k, :title Recent changes in pages linked from this page [k], :href /wiki/Special:RecentChangesLinked/Rosetta_Code}, :content (Related changes)})} 
+			 {:tag :li, :attrs {:id t-specialpages}, :content ({:tag :a, :attrs {:accesskey q, :title A list of all special pages [q], :href /wiki/Special:SpecialPages}, :content (Special pages)})} 
+			 {:tag :li, :attrs nil, :content ({:tag :a, :attrs {:rel alternate, :href /mw/index.php?title=Rosetta_Code&printable=yes}, :content (Printable version)})} 
+			 {:tag :li, :attrs {:id t-permalink}, :content ({:tag :a, :attrs {:title Permanent link to this revision of the page, :href /mw/index.php?title=Rosetta_Code&oldid=116338}, :content (Permanent link)})} 
+ {:tag :li, :attrs {:id t-smwbrowselink}, :content ({:tag :a, :attrs {:title Special:Browse/Rosetta Code, :href /wiki/Special:Browse/Rosetta_Code}, :content (Browse properties)})} 		)} 
+	)} 
+)} 
+
+ {:type :comment, :data  /TOOLBOX } 
+
+ {:type :comment, :data  LANGUAGES } 
+
+ {:type :comment, :data  /LANGUAGES } 
+			)} 
+		 {:type :comment, :data  /panel } 
+		 {:type :comment, :data  footer } 
+		 {:tag :div, :attrs {:id footer}, :content (
+							 {:tag :ul, :attrs {:id footer-info}, :content (
+											 {:tag :li, :attrs {:id footer-info-lastmod}, :content ( This page was last modified on 5 August 2011, at 21:33.)} 
+											 {:tag :li, :attrs {:id footer-info-copyright}, :content (Content is available under  {:tag :a, :attrs {:href http://www.gnu.org/licenses/fdl-1.2.html, :class external}, :content (GNU Free Documentation License 1.2)} .)} 
+									)} 
+							 {:tag :ul, :attrs {:id footer-places}, :content (
+											 {:tag :li, :attrs {:id footer-places-privacy}, :content ({:tag :a, :attrs {:title Rosetta Code:Privacy policy, :href /wiki/Rosetta_Code:Privacy_policy}, :content (Privacy policy)})} 
+											 {:tag :li, :attrs {:id footer-places-about}, :content ({:tag :a, :attrs {:title Rosetta Code:About, :href /wiki/Rosetta_Code:About}, :content (About Rosetta Code)})} 
+											 {:tag :li, :attrs {:id footer-places-disclaimer}, :content ({:tag :a, :attrs {:title Rosetta Code:General disclaimer, :href /wiki/Rosetta_Code:General_disclaimer}, :content (Disclaimers)})} 
+									)} 
+										 {:tag :ul, :attrs {:class noprint, :id footer-icons}, :content (
+					 {:tag :li, :attrs {:id footer-copyrightico}, :content (
+						 {:tag :a, :attrs {:href http://www.gnu.org/licenses/fdl-1.2.html}, :content ({:tag :img, :attrs {:height 31, :width 88, :alt GNU Free Documentation License 1.2, :src /mw/skins/common/images/gnu-fdl.png}, :content nil})} 
+					)} 
+					 {:tag :li, :attrs {:id footer-poweredbyico}, :content (
+						 {:tag :a, :attrs {:href http://www.mediawiki.org/}, :content ({:tag :img, :attrs {:height 31, :width 88, :alt Powered by MediaWiki, :src /mw/skins/common/images/poweredby_mediawiki_88x31.png}, :content nil})} 
+						 {:tag :a, :attrs {:href http://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki}, :content ({:tag :img, :attrs {:height 31, :width 88, :alt Powered by Semantic MediaWiki, :src /mw/extensions/SemanticMediaWiki/skins/images/smw_button.png}, :content nil})} 
+					)} 
+				)} 
+						 {:tag :div, :attrs {:style clear:both}, :content nil} 
+		)} 
+		 {:type :comment, :data  /footer } 
+		 {:type :comment, :data  fixalpha } 
+		 {:tag :script, :attrs {:type text/javascript}, :content ( if ( window.isMSIE55 ) fixalpha(); )} 
+		 {:type :comment, :data  /fixalpha } 
+		 {:tag :script, :attrs {:src /mw/load.php?debug=false&lang=en&modules=skins.vector&only=scripts&skin=vector&*}, :content nil} 
+ {:tag :script, :attrs nil, :content (if(window.mw){
+	mw.loader.load(["ext.smw.sorttable", "mediawiki.user", "mediawiki.util", "mediawiki.page.ready", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+}
+)} 
+ {:tag :script, :attrs {:type text/javascript}, :content (
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-1219419-1"]);
+  _gaq.push(["_trackPageview"]);
+
+  (function() {
+    var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+    ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+    var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+)} 
+ {:tag :script, :attrs {:src /mw/load.php?debug=false&lang=en&modules=site&only=scripts&skin=vector&*}, :content nil} 
+ {:tag :script, :attrs nil, :content (if(window.mw){
+	mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,
+	"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs102":false,"searchNs103":false,"searchNs106":false,"searchNs107":false,"searchNs108":false,"searchNs109":false,"searchNs110":false,"searchNs111":false,"searchNs112":false,"searchNs113":false,"searchNs114":false,"searchNs115":false,"searchNs170":false,"searchNs171":false,"searchNs274":false,"searchNs275":false});;mw.user.tokens.set({"editToken":"+\\","watchToken":false});;mw.loader.state({"user.options":"ready","user.tokens":"ready"});
+	
+	/* cache key: rosettacode:resourceloader:filter:minify-js:4:53430b334a211d12bb807ccec9845ab3 */
+}
+)} {:type :comment, :data  Served in 0.304 secs. } 
+	)} 
+
+)})
+()
