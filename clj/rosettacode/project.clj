@@ -6,5 +6,6 @@
   :dependencies [[org.clojure/clojure "1.4.0"]
                  [paddleguru/enlive "1.2.0-alpha1"]
                  [clj-http "0.4.1"]
-                 [com.ashafa/clutch "0.4.0-SNAPSHOT"]]
+                 [com.ashafa/clutch "0.4.0-SNAPSHOT"]
+                 [cheshire "4.0.0"]]
   :main rosettacode.core)
