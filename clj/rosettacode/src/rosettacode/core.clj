@@ -6,7 +6,8 @@
   (:use [net.cgrand.enlive-html]
         [com.ashafa.clutch :only [create-database with-db
                                   put-document get-document
-                                  delete-document]]
+                                  bulk-update
+                                  delete-document get-database]]
         [clojure.pprint]))
 
 (defn fetch-html [url]
@@ -19,8 +20,7 @@
 (def lang-links (select languages [  #{(attr= :title "Category:C")
                                        (attr= :title "Category:Clojure")
                                        (attr= :title "Category:Java")
-                                       (attr= :title "Category:Lisp")
-                                       (attr= :title "Category:C++")
+                                       (attr= :title "Category:Lisp") (attr= :title "Category:C++")
                                        (attr= :title "Category:Python")
                                        (attr= :title "Category:Objective-C")}]))
 
@@ -32,19 +32,52 @@
 
 (defn problems [html]
   (let [links (select html [:#mw-pages :a])]
-    (map (comp :title :attrs) links)))
+    (map (comp s/lower-case :title :attrs) links)))
 
 (def problems-list (mapcat problems problems-html))
-(def problems-set (into #{} problems-list))
+(def problems-set (into (sorted-set) problems-list))
+
 
 (defn raw-problem-data [problem-title]
   (let [url (str query-base-url (URLEncoder/encode problem-title))
         resp (:body (client/get url))
-        json (json/parse-string resp true)
-        pages (-> json :query :pages)
-        page-key (first (keys pages))]
-    (-> pages page-key :revisions first :*)))
+        json (json/parse-string resp true)] 
+    (if (> (count json) 0)
+      (let [pages (-> json :query :pages)
+            page-key (first (keys pages))]
+        (println (str "Getting samples for: " problem-title))
+        (Thread/sleep (+ 500 (rand-int 500)))
+        {:title problem-title :data (-> pages page-key :revisions first :*)})
+      {:title problem-title :data ""})))
+
+
+ ;map (comp s/lower-case #(nth % 1))
+(defn samples [problem-data]
+  (for [[_ lang sample] (re-seq #"(?ms)<lang (.*?)>(.*?)</lang>" (:data problem-data))]
+    {:problem (:title problem-data)
+     :lang    (s/lower-case lang)
+     :samples  [sample]}))
+
+
+(defn merge-samples [map-coll]
+  ;k is the name of language, v is a vector of maps of the form
+  ; {:lang k, :problem <problem-title>, :samples [sample1 sample1 ...]}
+  (for [[k v] (group-by :lang map-coll)]
+     (if (> (count v) 1)
+       (apply merge-with (fn [a b]
+                           (if (vector? a)
+                             (into a b)
+                             a))
+              v)
+       (first v))))
+
+;; this works, time to to get threaded and get all the samples
+;; -- also figure out how to add calculated properties to couchdb, 
+;; such as number of samples
 
 (defn -main
   [& args]
-  "hello")
+  (let [db (get-database "rosettacode")
+        data-coll (map raw-problem-data problems-set)
+        docs (map merge-samples (map samples data-coll))]
+    (map (partial bulk-update db) docs)))
