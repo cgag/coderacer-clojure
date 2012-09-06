@@ -1,22 +1,23 @@
-#debug = true
+debug = true
+
+jQuery ->
+  problems = ["Anonymous_recursion", "Anagrams", "Ackermann_function", "Curtis"]
+  languages = ["c", "ruby", "clojure", "ioke"]
+
+  lang_select = document.getElementById('lang')
+  console.log("lang_select: " + lang_select)
+  lang_select.options.length = 0
+  for lang, i in languages
+    lang_select.options.add(new Option(lang, lang))
 
 j = (s) ->
   JSON.stringify(s)
-
-# later
-#removeTrailingWhiteSpace = (tokens) ->
-  #for token in tokens
-    #token.replace(/(\s*)\n/, "" + "\n")
-    #???
 
 codeSplit = (code) ->
   tokens = []
   token = ""
   for char in code
     if char == " "
-      #if token.length == 0 || token[token.length - 1] == " "
-        #token = token.concat(" ")
-      #else
       token = token.concat(char)
       tokens.push(token)
       token = ""
@@ -80,17 +81,10 @@ window.getProblems = () ->
   $(html).find("a").each((i, el) -> arr.push(el.text.slice(0, el.text.length - 1)))
   arr
 
-#jQuery ->
-  #alert("hi")
-  #problems = getProblems
-  #$.each(problems, (value) ->
-    #alert("valie: " + value)
-    #$('#problem').append($('<option>', { value : value }).text(value.replace('_', ' '))))
-
 window.race = ->
-  getProblems = () ->
-  getProblems()
-  samples = []
+
+  lang_select = document.getElementById('lang')
+  console.log("lang_select: " + lang_select)
 
   problems = ["Anonymous_recursion", "Anagrams", "Ackermann_function"]
   languages = ["c", "ruby", "clojure"]
@@ -109,33 +103,9 @@ window.race = ->
             async: false}).responseText)
   console.log("sample: " + sample)
 
-  #samples = [
-    #$.trim($.ajax({
-      #url: "http://localhost:8000/data/parsed/Anonymous_recursion/clojure",
-      #dataType: "text"
-      #async: false
-    #}).responseText),
-    #$.trim($.ajax({
-      #url: "http://localhost:8000/data/parsed/Anagrams/clojure",
-      #dataType: "text"
-      #async: false
-    #}).responseText)]
-
-
-
-  #code = $.ajax({
-    #url: "http://localhost:8000/data/parsed/99_Bottles_of_Beer/fortran",
-    #dataType: "text"
-    #async: false
-  #}).responseText
-
-  #html = codeHtml(resp)
-
-  #sample = samples[2] #code # codeSamples(html)[0] #preEscape
-
   tokens = codeSplit(sample)
   escapedSample = preEscape(sample)
-  #tokens[0] = "#include"
+
   $("#code-text").append("<pre><span id=\"code-style\">" + wrapCode(escapedSample) + "</span></pre>")
 
   inputToken = ""
