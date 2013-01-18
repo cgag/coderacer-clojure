@@ -1,4 +1,4 @@
-This was made for a hackathan (hack the midwest).  We intended to make a version of [typeracer](http://play.typeracer.com/) using code samples instead of prose. 
+This was made for a hackathon (hack the midwest).  We intended to make a version of [typeracer](http://play.typeracer.com/) using code samples instead of prose. 
 
 Naturally things took longer than expected and we only really got as far being able to track/follow along with the code being typed.  You can see it here: [coderacer](http://coderacer.curtis.io).  
 
